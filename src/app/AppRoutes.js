@@ -113,6 +113,10 @@ const CustomerListOfInvoices = lazy(() =>
 	import("../Admin Panel/Admin-Panel-Pages/Customer-List-Of-Invoices/CustomerInvoices")
 );
 
+const NotificationModal = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Notification-Modal/NotificationModal")
+);
+
 class AppRoutes extends Component {
 	render() {
 		return (
@@ -141,6 +145,7 @@ class AppRoutes extends Component {
 					<Route exact path="/users/login" component={AdminLogin} />
 
 					<Route exact path="/users/dashboard" component={AdminDashboard} />
+					<Route exact path="/users/notificationmodal" component={NotificationModal} />
 
 					<Route
 						path="/admin/AdminPaymentTransaction"

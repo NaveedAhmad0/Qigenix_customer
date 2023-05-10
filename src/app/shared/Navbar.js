@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import pic from "../../assets/images/Ellipse 21.png";
+// import "../../Admin Panel/Admin-Panel-Pages/Notification-Modal/NotificationModal";
 import "./navbar.css";
 const Navbar = () => {
 	let history = useHistory();
@@ -135,12 +136,34 @@ const Navbar = () => {
 								<Dropdown.Item className="mark-all p-3" href="#/action-1">
 									Marl all as read
 								</Dropdown.Item>
+								<Dropdown.Item href="/users/notificationmodal">
+									<div className="d-flex justify-content-between p-2">
+										<img className="user-logo" src="https://ixiono.com/crm/assets/images/user-placeholder.jpg" />
+										<p className="mt-3 ml-2"><span className="font-weight-bold">Yeswanth  Obillaneni</span> - added you as follower on task Scope of work phase - 3 </p>
+									</div>
+								</Dropdown.Item>
 								<Dropdown.Item href="#/action-2">
 									<div className="d-flex justify-content-between p-2">
 										<img className="user-logo" src="https://ixiono.com/crm/assets/images/user-placeholder.jpg" />
-										<p className="mt-3 ml-2">Yeswanth  Obillaneni - added you as follower on task Scope of work phase - 3 </p>
+										<p className="mt-3 ml-2"><span className="font-weight-bold">Yeswanth  Obillaneni</span> - added you as follower on task Scope of work phase - 3 </p>
 									</div>
 								</Dropdown.Item>
+								<Dropdown.Item href="#/action-2">
+									<div className="d-flex justify-content-between p-2">
+										<img className="user-logo" src="https://ixiono.com/crm/assets/images/user-placeholder.jpg" />
+										<p className="mt-3 ml-2"><span className="font-weight-bold">Yeswanth  Obillaneni</span> - added you as follower on task Scope of work phase - 3 </p>
+									</div>
+								</Dropdown.Item>
+								<Dropdown.Item href="#/action-2">
+									<div className="d-flex justify-content-between p-2">
+										<img className="user-logo" src="https://ixiono.com/crm/assets/images/user-placeholder.jpg" />
+										<p className="mt-3 ml-2"><span className="font-weight-bold">Yeswanth  Obillaneni</span> - added you as follower on task Scope of work phase - 3 </p>
+									</div>
+								</Dropdown.Item>
+								<hr className="hr-10"></hr>
+								<div>
+									<p className="text-left font-weight-bold text-primary p-3 ml-4">View All</p>
+								</div>
 							</Dropdown.Menu>
 						</Dropdown>
 					</li>
