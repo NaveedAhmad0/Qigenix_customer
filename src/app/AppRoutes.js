@@ -117,6 +117,24 @@ const NotificationModal = lazy(() =>
 	import("../Admin Panel/Admin-Panel-Pages/Notification-Modal/NotificationModal")
 );
 
+const ScannedDevices = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Scanned-Devices/AddCustomer")
+);
+
+const DeviceInfo = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Device-Info/DeviceInfo")
+);
+
+const DetailsOfHardwareAssign = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Details-Of-Hardware-Assigned/HardwareAssign")
+);
+
+const TransactionDetails = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Transaction-Details/TransactionDetails")
+);
+
+
+
 class AppRoutes extends Component {
 	render() {
 		return (
@@ -146,6 +164,11 @@ class AppRoutes extends Component {
 
 					<Route exact path="/users/dashboard" component={AdminDashboard} />
 					<Route exact path="/users/notificationmodal" component={NotificationModal} />
+					<Route exact path="/users/scandevices" component={ScannedDevices} />
+					<Route exact path="/users/deviceinfo" component={DeviceInfo} />
+					<Route exact path="/users/hardwareassign" component={DetailsOfHardwareAssign} />
+					<Route exact path="/users/transactiondetails" component={TransactionDetails} />
+					
 
 					<Route
 						path="/admin/AdminPaymentTransaction"

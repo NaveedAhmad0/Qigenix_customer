@@ -200,7 +200,7 @@ function Sidebar() {
 							? "nav-item active"
 							: "nav-item"
 					}>
-					<Link className="nav-link" to="/users/DeviceInfo">
+					<Link className="nav-link" to="/users/deviceinfo">
 						<i className="mdi mdi-television menu-icon"></i>
 						<span className="menu-title">
 							<Trans>Device Info</Trans>
@@ -213,7 +213,7 @@ function Sidebar() {
 							? "nav-item active"
 							: "nav-item "
 					}>
-					<Link className="nav-link" to="/users/HardwareAssign">
+					<Link className="nav-link" to="/users/hardwareassign">
 						<i className="mdi mdi-television menu-icon"></i>
 						<span className="menu-title">
 							<Trans>Details Of Hardware Assigned</Trans>
@@ -236,7 +236,7 @@ function Sidebar() {
 					className={
 						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
 					}>
-					<Link className="nav-link" to="/users/TransactionDetails">
+					<Link className="nav-link" to="/users/transactiondetails">
 						<i className="mdi mdi-television menu-icon"></i>
 						<span className="menu-title">
 							<Trans>Transactions Details</Trans>
@@ -252,6 +252,18 @@ function Sidebar() {
 						<i className="mdi mdi-television menu-icon"></i>
 						<span className="menu-title">
 							<Trans>Notification List</Trans>
+						</span>
+					</Link>
+				</li>
+
+				<li
+					className={
+						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
+					}>
+					<Link className="nav-link" to="/users/scandevices">
+						<i className="mdi mdi-television menu-icon"></i>
+						<span className="menu-title">
+							<Trans>Scanned Devices</Trans>
 						</span>
 					</Link>
 				</li>
