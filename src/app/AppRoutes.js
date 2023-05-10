@@ -105,6 +105,14 @@ const SignUp = lazy(() =>
 	import("../Admin Panel/Admin-Panel-Pages/Customer-Auth/Register")
 );
 
+const CustomerNotificationList = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Customer-Notification-List/NotificationList")
+);
+
+const CustomerListOfInvoices = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Customer-List-Of-Invoices/CustomerInvoices")
+);
+
 class AppRoutes extends Component {
 	render() {
 		return (
@@ -147,6 +155,8 @@ class AppRoutes extends Component {
 						component={WithdrawalDetails}
 					/>
 					<Route path="/users/Registration" component={SignUp} />
+					<Route path="/users/NotificationList" component={CustomerNotificationList} />
+					<Route path="/users/ListOfInvoices" component={CustomerListOfInvoices} />
 					<Route path="/admin/CustomerList" component={CustomerList} />
 					<Route path="/admin/addCustomer" component={AddCustomer} />
 					<Route path="/admin/CustomerDetails" component={CustomerDetails} />

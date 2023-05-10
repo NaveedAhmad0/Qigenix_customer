@@ -1,0 +1,68 @@
+<Dropdown.Menu>
+	<Dropdown.Item
+		className="dropdown-item d-flex align-items-center"
+		href="!#"
+		onClick={(evt) => evt.preventDefault()}>
+		
+		
+	</Dropdown.Item>
+</Dropdown.Menu>
+
+
+
+
+<ul className="dropdown-menu notifications animated fadeIn width400" data-total-unread="0">
+	<li className="not_mark_all_as_read">
+		<a href="#" onclick="mark_all_notifications_as_read_inline(); return false;">Mark all as read</a>
+	  </li>
+	  <li class="relative notification-wrapper" data-notification-id="2593">
+		  <a href="https://ixiono.com/crm/admin/#taskid=546" class="notification-top notification-link">
+			<div class="notification-box">
+				<img src="https://ixiono.com/crm/assets/images/user-placeholder.jpg"
+					className="staff-profile-image-small img-circle notification-image pull-left" />
+				<div class="media-body">
+					<span class="notification-title">Yeswanth  Obillaneni - added you as follower on task Scope of work phase - 3 ...
+					</span><br />
+					<small class="text-muted">
+					  <span class="text-has-action" data-placement="right" data-toggle="tooltip" data-title="2022-05-27 21:22:51">
+						12 months ago
+					</span>
+					</small>
+				  </div>
+			</div>
+		</a>
+	</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+<div className="notification-list">
+										<ul>
+											<li class="mark_all_as_read p-3">
+												<a href="#">
+													Mark all as read
+												</a>
+											</li>
+										</ul>
+										<hr/>
+										<ul>
+											<li>
+												<a>
+													<div className="d-flex justify-content-around flex-nowrap">
+														<img className="user-logo"
+															src="https://ixiono.com/crm/assets/images/user-placeholder.jpg" alt="user"
+														/>
+														<p className="font-weight-normal ml-2 mt-3">Yeswanth  Obillaneni - added you as follower on task Scope of work phase - 3</p>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>

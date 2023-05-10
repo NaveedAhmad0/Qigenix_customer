@@ -187,7 +187,7 @@ function Sidebar() {
 							? "nav-item active"
 							: "nav-item mt-4"
 					}>
-					<Link className="nav-link" to="/admin/dashboard">
+					<Link className="nav-link" to="/users/dashboard">
 						<i className="mdi mdi-television menu-icon"></i>
 						<span className="menu-title">
 							<Trans>Dashboard</Trans>
@@ -200,7 +200,7 @@ function Sidebar() {
 							? "nav-item active"
 							: "nav-item"
 					}>
-					<Link className="nav-link" to="/admin/dashboard">
+					<Link className="nav-link" to="/users/DeviceInfo">
 						<i className="mdi mdi-television menu-icon"></i>
 						<span className="menu-title">
 							<Trans>Device Info</Trans>
@@ -213,7 +213,7 @@ function Sidebar() {
 							? "nav-item active"
 							: "nav-item "
 					}>
-					<Link className="nav-link" to="/admin/dashboard">
+					<Link className="nav-link" to="/users/HardwareAssign">
 						<i className="mdi mdi-television menu-icon"></i>
 						<span className="menu-title">
 							<Trans>Details Of Hardware Assigned</Trans>
@@ -225,7 +225,7 @@ function Sidebar() {
 					className={
 						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
 					}>
-					<Link className="nav-link" to="/admin/CustomerList">
+					<Link className="nav-link" to="/users/ListOfInvoices">
 						<i className="mdi mdi-television menu-icon"></i>
 						<span className="menu-title">
 							<Trans>List Of Invoices</Trans>
@@ -236,10 +236,22 @@ function Sidebar() {
 					className={
 						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
 					}>
-					<Link className="nav-link" to="/admin/accoutnManagement">
+					<Link className="nav-link" to="/users/TransactionDetails">
 						<i className="mdi mdi-television menu-icon"></i>
 						<span className="menu-title">
 							<Trans>Transactions Details</Trans>
+						</span>
+					</Link>
+				</li>
+				
+				<li
+					className={
+						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
+					}>
+					<Link className="nav-link" to="/users/NotificationList">
+						<i className="mdi mdi-television menu-icon"></i>
+						<span className="menu-title">
+							<Trans>Notification List</Trans>
 						</span>
 					</Link>
 				</li>

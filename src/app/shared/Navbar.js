@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dropdown, Form, Button } from "react-bootstrap";
+import { Dropdown, Form, ListGroup, Button } from "react-bootstrap";
 import { Trans } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -119,14 +119,27 @@ const Navbar = () => {
 								</svg>
 								<span className="count">7</span>
 							</Dropdown.Toggle>
-							<Dropdown.Menu className="navbar-dropdown preview-list">
+							{/*<Dropdown.Menu className="navbar-dropdown preview-list">
 								<Dropdown.Item
-									className="dropdown-item  d-flex align-items-center"
+									className="dropdown-item d-flex align-items-center"
 									href="!#"
-									onClick={(evt) => evt.preventDefault()}>
-									<p className="mb-0 font-weight-medium float-left">
-										<Trans>You have</Trans> 7 <Trans>unread mails</Trans>{" "}
-									</p>
+									onClick={(evt) => evt.preventDefault()}
+								>
+								<Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+								<Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+								<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+						
+								</Dropdown.Item>
+							</Dropdown.Menu>*/}
+							<Dropdown.Menu className="dropdown-main-menu">
+								<Dropdown.Item className="mark-all p-3" href="#/action-1">
+									Marl all as read
+								</Dropdown.Item>
+								<Dropdown.Item href="#/action-2">
+									<div className="d-flex justify-content-between p-2">
+										<img className="user-logo" src="https://ixiono.com/crm/assets/images/user-placeholder.jpg" />
+										<p className="mt-3 ml-2">Yeswanth  Obillaneni - added you as follower on task Scope of work phase - 3 </p>
+									</div>
 								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>

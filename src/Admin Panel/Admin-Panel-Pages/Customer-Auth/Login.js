@@ -178,7 +178,7 @@ function AdminLogin() {
 
 		try {
 			const response = await axios.post(
-				`${API}/users/login`,
+				`https://qigenix.ixiono.com/apis/users/login`,
 				JSON.stringify({ email, password }),
 				{
 					headers: { "Content-Type": "application/json" },
