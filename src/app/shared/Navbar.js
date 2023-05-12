@@ -5,18 +5,23 @@ import { useHistory } from "react-router-dom";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import pic from "../../assets/images/Ellipse 21.png";
-
+import NotificationModal from "../../Admin Panel/Admin-Panel-Pages/Notification-Modal/NotificationModal";
 // import "../../Admin Panel/Admin-Panel-Pages/Notification-Modal/NotificationModal";
 import "./navbar.css";
 import axios from "axios";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import API from "../../backend";
 const Navbar = () => {
 	const [tableRowsData, setTableRowsData] = useState([]);
-	const [loading, setLoading] = useState(false);
+	const [read, setRead] = useState({
+		customer_id: "",
+	});
 	const token = localStorage.getItem("token");
 	const customer_id = localStorage.getItem("customerId");
 	const history = useHistory();
 	const [count, setCount] = useState(0);
+	const [readStatus, setReadStatus] = useState(false);
+	const [filteredData, setFilteredData] = useState([]);
 
 	const toggleRightSidebar = () => {
 		document.querySelector(".right-sidebar").classList.toggle("open");
@@ -49,6 +54,46 @@ const Navbar = () => {
 	};
 	useEffect(() => {
 		fetchData();
+	}, []);
+	useEffect(() => {
+		fetchData();
+	}, [readStatus]);
+
+	useEffect(() => {
+		try {
+			var config = {
+				method: "post",
+				url: `${API}/users/readSomeNotification`,
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `${token}`,
+				},
+				data: JSON.stringify([
+					{
+						id: read.customer_id,
+						unread: "1",
+					},
+				]),
+			};
+			axios(config)
+				.then(function (response) {
+					console.log(response.data);
+					setReadStatus(!readStatus);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		} catch (error) {
+			console.log(error);
+		}
+	}, [read]);
+
+	useEffect(() => {
+		const result = tableRowsData?.filter((tables) => {
+			return tables.visible.match(1);
+		});
+		console.log(result);
+		setFilteredData(result);
 	}, []);
 
 	return (
@@ -168,34 +213,109 @@ const Navbar = () => {
 						
 								</Dropdown.Item>
 							</Dropdown.Menu>*/}
-							<Dropdown.Menu className="dropdown-main-menu">
+							<Dropdown.Menu
+								className="dropdown-main-menu"
+								style={{ height: "400px", overflowY: "scroll" }}>
 								<Dropdown.Item className="mark-all p-3" href="#/action-1">
 									Mark all as read
 								</Dropdown.Item>
-								{tableRowsData?.map((item) => {
+								{filteredData?.map((item) => {
 									return (
-										<Dropdown.Item href="/users/notificationmodal">
-											<div className="d-flex justify-content-between p-2">
+										<Dropdown.Item
+											onClick={() => {
+												setRead({ customer_id: item.id });
+											}}>
+											<div
+												className="d-flex justify-content-between p-2"
+												style={{
+													opacity:
+														item.unread === "0" || item.unread === null
+															? "1"
+															: "0.4",
+												}}>
 												<img
 													className="user-logo"
 													alt=""
 													src="https://ixiono.com/crm/assets/images/user-placeholder.jpg"
 												/>
-												<p
-													className="mt-3 ml-2"
-													onClick={() => {
-														history.push({
-															pathname: "/users/notificationmodal",
-															state: { detail: item },
-														});
-													}}>
+												<p className="mt-3 ml-2">
 													<span className="font-weight-bold">Admin</span> -{" "}
-													{`${item.message.slice(0, 40)}....`}
+													{`${item.message.slice(0, 30)}....`}
 												</p>
 											</div>
 										</Dropdown.Item>
 									);
 								})}
+
+								<div
+									className="modal fade"
+									id="exampleModal"
+									tabindex="-1"
+									aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div className="modal-dialog">
+										<div className="modal-content">
+											<div className="modal-header">
+												<h5 className="modal-title" id="exampleModalLabel">
+													Send New Notification
+												</h5>
+												<button
+													type="button"
+													className="btn-close"
+													data-bs-dismiss="modal"
+													aria-label="Close"></button>
+											</div>
+											<div className="modal-body">
+												<div className="container">
+													<div className="row">
+														<div className="col-md-8">
+															<div className="mod-content data">
+																<div className="mod-header-section d-flex justify-content-between ">
+																	<h4 className="">Notification Details</h4>
+																</div>
+																<div className="mod-content-title">
+																	<h4>
+																		From :
+																		<a className="ml-2" href="#/">
+																			{" "}
+																			Admin
+																		</a>
+																	</h4>
+																</div>
+																<hr className="hr-10"></hr>
+																<div className="mod-description">
+																	<div className="description-content">
+																		<h4>Message</h4>
+																		<div className="task-view-content">
+																			<ul>
+																				<li style={{ fontWeight: "400" }}>
+																					<span style={{ fontWeight: "400" }}>
+																						{/* {details?.message} */}
+																					</span>
+																				</li>
+																			</ul>
+																		</div>
+																	</div>
+																</div>
+																<hr className="hr-10"></hr>
+
+																<a href="#/" className="check-icon-text">
+																	<span class="new-checklist-item">
+																		<i class="fa fa-plus-circle"></i>
+																		Created at:
+																	</span>
+																</a>
+																{/* <p class="text-muted checklist-text">{details.createdAt}</p> */}
+															</div>
+														</div>
+
+														<div className="col-md-4"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 
 								<hr className="hr-10"></hr>
 								<div>
