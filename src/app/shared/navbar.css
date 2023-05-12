@@ -114,7 +114,8 @@ border-bottom: 1px solid #f0f0f0;
     justify-content: space-around;
 }
 .user-logo {
-    width: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 

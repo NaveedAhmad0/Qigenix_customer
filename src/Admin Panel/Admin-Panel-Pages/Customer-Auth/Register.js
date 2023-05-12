@@ -107,7 +107,7 @@ function UserRegistration() {
 		try {
 			const response = await axios
 				.post(
-					`${API}/users/register`,
+					`https://qigenix.ixiono.com/apis/users/register`,
 					JSON.stringify({
 						username,
 						mobile: mobile.toString(),

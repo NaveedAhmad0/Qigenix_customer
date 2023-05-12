@@ -1,20 +1,55 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { Dropdown, Form, ListGroup, Button } from "react-bootstrap";
 import { Trans } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import pic from "../../assets/images/Ellipse 21.png";
+
 // import "../../Admin Panel/Admin-Panel-Pages/Notification-Modal/NotificationModal";
 import "./navbar.css";
+import axios from "axios";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 const Navbar = () => {
-	let history = useHistory();
-	const toggleOffcanvas = () => {
-		document.querySelector(".sidebar-offcanvas").classList.toggle("active");
-	};
+	const [tableRowsData, setTableRowsData] = useState([]);
+	const [loading, setLoading] = useState(false);
+	const token = localStorage.getItem("token");
+	const customer_id = localStorage.getItem("customerId");
+	const history = useHistory();
+	const [count, setCount] = useState(0);
+
 	const toggleRightSidebar = () => {
 		document.querySelector(".right-sidebar").classList.toggle("open");
 	};
+	const toggleOffcanvas = () => {
+		document.querySelector(".sidebar-offcanvas").classList.toggle("active");
+	};
+	const fetchData = async () => {
+		try {
+			var config = {
+				method: "get",
+				url: `https://qigenix.ixiono.com/apis/users/getListOfNotification/${customer_id}`,
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `${token}`,
+				},
+			};
+			axios(config)
+				.then(function (response) {
+					setTableRowsData(response.data.notifications);
+					console.log(response.data.notifications);
+					setCount(response.data.count);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	useEffect(() => {
+		fetchData();
+	}, []);
 
 	return (
 		<nav className="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
@@ -81,7 +116,7 @@ const Navbar = () => {
 					</li>
 					<li className=" nav-item list">
 						<a
-							href="#"
+							href="#/"
 							data-toggle="tooltip"
 							title="Todo items"
 							data-placement="bottom">
@@ -98,9 +133,10 @@ const Navbar = () => {
 						</a>
 					</li>
 					<li className="nav-item ">
-						<a href="#" className="profile" aria-expanded="false">
+						<a href="#/" className="profile" aria-expanded="false">
 							<img
 								src={pic}
+								alt=""
 								className="img img-responsive staff-profile-image-small pull-left"
 								style={{ width: "2.5rem" }}
 							/>{" "}
@@ -108,7 +144,7 @@ const Navbar = () => {
 					</li>
 					<li className="nav-item  nav-profile border-0">
 						<Dropdown>
-							<Dropdown.Toggle className="nav-link count-indicator p-0 toggle-arrow-hide bg-transparent">
+							<Dropdown.Toggle className="nav-link count-indicator p-1 toggle-arrow-hide bg-transparent">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									width="22"
@@ -118,7 +154,7 @@ const Navbar = () => {
 									viewBox="0 0 16 16">
 									<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
 								</svg>
-								<span className="count">7</span>
+								<span className="count">{tableRowsData.length}</span>
 							</Dropdown.Toggle>
 							{/*<Dropdown.Menu className="navbar-dropdown preview-list">
 								<Dropdown.Item
@@ -134,84 +170,41 @@ const Navbar = () => {
 							</Dropdown.Menu>*/}
 							<Dropdown.Menu className="dropdown-main-menu">
 								<Dropdown.Item className="mark-all p-3" href="#/action-1">
-									Marl all as read
+									Mark all as read
 								</Dropdown.Item>
-								<Dropdown.Item href="/users/notificationmodal">
-									<div className="d-flex justify-content-between p-2">
-										<img className="user-logo" src="https://ixiono.com/crm/assets/images/user-placeholder.jpg" />
-										<p className="mt-3 ml-2"><span className="font-weight-bold">Yeswanth  Obillaneni</span> - added you as follower on task Scope of work phase - 3 </p>
-									</div>
-								</Dropdown.Item>
-								<Dropdown.Item href="#/action-2">
-									<div className="d-flex justify-content-between p-2">
-										<img className="user-logo" src="https://ixiono.com/crm/assets/images/user-placeholder.jpg" />
-										<p className="mt-3 ml-2"><span className="font-weight-bold">Yeswanth  Obillaneni</span> - added you as follower on task Scope of work phase - 3 </p>
-									</div>
-								</Dropdown.Item>
-								<Dropdown.Item href="#/action-2">
-									<div className="d-flex justify-content-between p-2">
-										<img className="user-logo" src="https://ixiono.com/crm/assets/images/user-placeholder.jpg" />
-										<p className="mt-3 ml-2"><span className="font-weight-bold">Yeswanth  Obillaneni</span> - added you as follower on task Scope of work phase - 3 </p>
-									</div>
-								</Dropdown.Item>
-								<Dropdown.Item href="#/action-2">
-									<div className="d-flex justify-content-between p-2">
-										<img className="user-logo" src="https://ixiono.com/crm/assets/images/user-placeholder.jpg" />
-										<p className="mt-3 ml-2"><span className="font-weight-bold">Yeswanth  Obillaneni</span> - added you as follower on task Scope of work phase - 3 </p>
-									</div>
-								</Dropdown.Item>
+								{tableRowsData?.map((item) => {
+									return (
+										<Dropdown.Item href="/users/notificationmodal">
+											<div className="d-flex justify-content-between p-2">
+												<img
+													className="user-logo"
+													alt=""
+													src="https://ixiono.com/crm/assets/images/user-placeholder.jpg"
+												/>
+												<p
+													className="mt-3 ml-2"
+													onClick={() => {
+														history.push({
+															pathname: "/users/notificationmodal",
+															state: { detail: item },
+														});
+													}}>
+													<span className="font-weight-bold">Admin</span> -{" "}
+													{`${item.message.slice(0, 40)}....`}
+												</p>
+											</div>
+										</Dropdown.Item>
+									);
+								})}
+
 								<hr className="hr-10"></hr>
 								<div>
-									<p className="text-left font-weight-bold text-primary p-3 ml-4">View All</p>
+									<Link to={"/users/NotificationList"}>
+										<p className="text-center font-weight-bold text-primary p-1 ml-4">
+											View All
+										</p>
+									</Link>
 								</div>
-							</Dropdown.Menu>
-						</Dropdown>
-					</li>
-
-					<li className="nav-item  nav-profile border-0">
-						<Dropdown>
-							<Dropdown.Toggle className="nav-link count-indicator p-0 toggle-arrow-hide bg-transparent">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="22"
-									height="23"
-									fill="currentColor"
-									class="bi bi-clock"
-									viewBox="0 0 16 16">
-									<path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-									<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-								</svg>
-								<span className="count">2</span>
-							</Dropdown.Toggle>
-							<Dropdown.Menu className="navbar-dropdown preview-list">
-								<Dropdown.Item
-									className="dropdown-item  d-flex align-items-center"
-									href="!#"
-									onClick={(evt) => evt.preventDefault()}>
-									<ul class="dropdown-menu">
-										<li>
-											<a class="dropdown-item" href="#">
-												Action
-											</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="#">
-												Another action
-											</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="#">
-												Something else here
-											</a>
-										</li>
-
-										<li>
-											<a class="dropdown-item" href="#">
-												Separated link
-											</a>
-										</li>
-									</ul>
-								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
 					</li>

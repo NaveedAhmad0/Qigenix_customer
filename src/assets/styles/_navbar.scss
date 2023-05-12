@@ -160,7 +160,8 @@ border-radius: 4px;
               font-size: 11px;
               color: $white;
               background: theme-color(danger);
-              padding-top: 2px;
+              padding: 3px;
+
             }
             &:after {
               display: none;

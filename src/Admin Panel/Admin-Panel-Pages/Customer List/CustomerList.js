@@ -24,6 +24,8 @@ function CustomerList() {
 	const [Filtered, setFiltered] = useState([]);
 	const [loading, setLoading] = useState(false);
 
+	const token = localStorage.getItem("token");
+
 	const fetchData = async () => {
 		try {
 			var config = {
@@ -31,6 +33,7 @@ function CustomerList() {
 				url: `https://qigenix.ixiono.com/apis/admin/getAllCustomer`,
 				headers: {
 					"Content-Type": "application/json",
+					Authorization: `${token}`,
 				},
 			};
 			axios(config)
