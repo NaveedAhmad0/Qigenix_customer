@@ -183,9 +183,7 @@ function Sidebar() {
 				</li> */}
 				<li
 					className={
-						isPathActive("/dashboard")
-							? "nav-item active"
-							: "nav-item mt-4"
+						isPathActive("/dashboard") ? "nav-item active" : "nav-item mt-4"
 					}>
 					<Link className="nav-link" to="/users/dashboard">
 						<i className="mdi mdi-television menu-icon"></i>
@@ -196,9 +194,7 @@ function Sidebar() {
 				</li>
 				<li
 					className={
-						isPathActive("/dashboard")
-							? "nav-item active"
-							: "nav-item"
+						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
 					}>
 					<Link className="nav-link" to="/users/deviceinfo">
 						<i className="mdi mdi-television menu-icon"></i>
@@ -207,7 +203,7 @@ function Sidebar() {
 						</span>
 					</Link>
 				</li>
-				<li
+				{/* <li
 					className={
 						isPathActive("/dashboard")
 							? "nav-item active"
@@ -219,7 +215,7 @@ function Sidebar() {
 							<Trans>Details Of Hardware Assigned</Trans>
 						</span>
 					</Link>
-				</li>
+				</li> */}
 
 				<li
 					className={
@@ -228,10 +224,22 @@ function Sidebar() {
 					<Link className="nav-link" to="/users/ListOfInvoices">
 						<i className="mdi mdi-television menu-icon"></i>
 						<span className="menu-title">
-							<Trans>List Of Invoices</Trans>
+							<Trans>Device Invoices</Trans>
 						</span>
 					</Link>
 				</li>
+				<li
+					className={
+						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
+					}>
+					<Link className="nav-link" to="/users/ScannedInvoices">
+						<i className="mdi mdi-television menu-icon"></i>
+						<span className="menu-title">
+							<Trans>Scanned Invoices</Trans>
+						</span>
+					</Link>
+				</li>
+
 				<li
 					className={
 						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
@@ -243,7 +251,7 @@ function Sidebar() {
 						</span>
 					</Link>
 				</li>
-				
+
 				<li
 					className={
 						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
@@ -446,7 +454,6 @@ function Sidebar() {
 						</span>
 					</Link>
 				</li> */}
-				
 			</ul>
 		</nav>
 	);

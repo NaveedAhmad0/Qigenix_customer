@@ -1,1 +1,0 @@
-{"version":3,"sources":["Admin Panel/Admin-Panel-Pages/Device-Info/DeviceInfo.js"],"names":["DeviceInfo"],"mappings":"uHAAA,2BAUeA,UARI,WACjB,OACE","file":"static/js/43.beb5ced6.chunk.js","sourcesContent":["import React from 'react'\n\nconst DeviceInfo = () => {\n  return (\n    <div>\n      \n    </div>\n  )\n}\n\nexport default DeviceInfo\n"],"sourceRoot":""}

@@ -106,15 +106,24 @@ const SignUp = lazy(() =>
 );
 
 const CustomerNotificationList = lazy(() =>
-	import("../Admin Panel/Admin-Panel-Pages/Customer-Notification-List/NotificationList")
+	import(
+		"../Admin Panel/Admin-Panel-Pages/Customer-Notification-List/NotificationList"
+	)
 );
 
 const CustomerListOfInvoices = lazy(() =>
-	import("../Admin Panel/Admin-Panel-Pages/Customer-List-Of-Invoices/CustomerInvoices")
+	import(
+		"../Admin Panel/Admin-Panel-Pages/Customer-List-Of-Invoices/CustomerInvoices"
+	)
+);
+const ListOfDeviceInvoice = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Device Invoice/DeviceInvoice")
 );
 
 const NotificationModal = lazy(() =>
-	import("../Admin Panel/Admin-Panel-Pages/Notification-Modal/NotificationModal")
+	import(
+		"../Admin Panel/Admin-Panel-Pages/Notification-Modal/NotificationModal"
+	)
 );
 
 const ScannedDevices = lazy(() =>
@@ -126,14 +135,16 @@ const DeviceInfo = lazy(() =>
 );
 
 const DetailsOfHardwareAssign = lazy(() =>
-	import("../Admin Panel/Admin-Panel-Pages/Details-Of-Hardware-Assigned/HardwareAssign")
+	import(
+		"../Admin Panel/Admin-Panel-Pages/Details-Of-Hardware-Assigned/HardwareAssign"
+	)
 );
 
 const TransactionDetails = lazy(() =>
-	import("../Admin Panel/Admin-Panel-Pages/Transaction-Details/TransactionDetails")
+	import(
+		"../Admin Panel/Admin-Panel-Pages/Transaction-Details/TransactionDetails"
+	)
 );
-
-
 
 class AppRoutes extends Component {
 	render() {
@@ -163,12 +174,23 @@ class AppRoutes extends Component {
 					<Route exact path="/users/login" component={AdminLogin} />
 
 					<Route exact path="/users/dashboard" component={AdminDashboard} />
-					<Route exact path="/users/notificationmodal" component={NotificationModal} />
+					<Route
+						exact
+						path="/users/notificationmodal"
+						component={NotificationModal}
+					/>
 					<Route exact path="/users/scandevices" component={ScannedDevices} />
 					<Route exact path="/users/deviceinfo" component={DeviceInfo} />
-					<Route exact path="/users/hardwareassign" component={DetailsOfHardwareAssign} />
-					<Route exact path="/users/transactiondetails" component={TransactionDetails} />
-					
+					<Route
+						exact
+						path="/users/hardwareassign"
+						component={DetailsOfHardwareAssign}
+					/>
+					<Route
+						exact
+						path="/users/transactiondetails"
+						component={TransactionDetails}
+					/>
 
 					<Route
 						path="/admin/AdminPaymentTransaction"
@@ -183,8 +205,15 @@ class AppRoutes extends Component {
 						component={WithdrawalDetails}
 					/>
 					<Route path="/users/Registration" component={SignUp} />
-					<Route path="/users/NotificationList" component={CustomerNotificationList} />
-					<Route path="/users/ListOfInvoices" component={CustomerListOfInvoices} />
+					<Route
+						path="/users/NotificationList"
+						component={CustomerNotificationList}
+					/>
+					<Route path="/users/ListOfInvoices" component={ListOfDeviceInvoice} />
+					<Route
+						path="/users/ScannedInvoices"
+						component={CustomerListOfInvoices}
+					/>
 					<Route path="/admin/CustomerList" component={CustomerList} />
 					<Route path="/admin/addCustomer" component={AddCustomer} />
 					<Route path="/admin/CustomerDetails" component={CustomerDetails} />

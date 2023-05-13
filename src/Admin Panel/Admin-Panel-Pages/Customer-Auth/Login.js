@@ -46,11 +46,16 @@ function AdminLogin() {
 			localStorage.setItem("customerId", response?.data?.customer_id);
 			setEmail("");
 			setPassword("");
-			setSuccess(true);
+			if (response?.data?.status === 200) {
+				setSuccess(true);
+			} else {
+				setErrMsg(response?.data?.message);
+			}
 		} catch (err) {
+			console.log("err", err);
 			if (!err?.response) {
 				setErrMsg("No Server Response");
-			} else if (err.response?.status === 400) {
+			} else if (err.response?.status === 403) {
 				setErrMsg("Invalid Credentialials");
 				setSuccess(false);
 			} else {

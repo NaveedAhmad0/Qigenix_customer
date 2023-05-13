@@ -11,17 +11,23 @@ import "./navbar.css";
 import axios from "axios";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import API from "../../backend";
+import moment from "moment";
 const Navbar = () => {
 	const [tableRowsData, setTableRowsData] = useState([]);
 	const [read, setRead] = useState({
 		customer_id: "",
 	});
+	const [hide, setHide] = useState({
+		customer_id: "",
+	});
+
+	const [allNotifications, setallNotifications] = useState([]);
+	const [hideStatus, setHideStatus] = useState(false);
 	const token = localStorage.getItem("token");
 	const customer_id = localStorage.getItem("customerId");
 	const history = useHistory();
 	const [count, setCount] = useState(0);
 	const [readStatus, setReadStatus] = useState(false);
-	const [filteredData, setFilteredData] = useState([]);
 
 	const toggleRightSidebar = () => {
 		document.querySelector(".right-sidebar").classList.toggle("open");
@@ -42,7 +48,7 @@ const Navbar = () => {
 			axios(config)
 				.then(function (response) {
 					setTableRowsData(response.data.notifications);
-					console.log(response.data.notifications);
+					// console.log(response.data.notifications);
 					setCount(response.data.count);
 				})
 				.catch(function (error) {
@@ -58,6 +64,9 @@ const Navbar = () => {
 	useEffect(() => {
 		fetchData();
 	}, [readStatus]);
+	useEffect(() => {
+		fetchData();
+	}, [hideStatus]);
 
 	useEffect(() => {
 		try {
@@ -77,7 +86,7 @@ const Navbar = () => {
 			};
 			axios(config)
 				.then(function (response) {
-					console.log(response.data);
+					// console.log(response.data);
 					setReadStatus(!readStatus);
 				})
 				.catch(function (error) {
@@ -87,14 +96,34 @@ const Navbar = () => {
 			console.log(error);
 		}
 	}, [read]);
-
 	useEffect(() => {
-		const result = tableRowsData?.filter((tables) => {
-			return tables.visible.match(1);
-		});
-		console.log(result);
-		setFilteredData(result);
-	}, []);
+		try {
+			var config = {
+				method: "post",
+				url: `${API}/users/hideSomeNotification`,
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `${token}`,
+				},
+				data: JSON.stringify([
+					{
+						id: hide.customer_id,
+						visible: "1",
+					},
+				]),
+			};
+			axios(config)
+				.then(function (response) {
+					// console.log(response.data);
+					setHideStatus(!hideStatus);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		} catch (error) {
+			console.log(error);
+		}
+	}, [hide]);
 
 	return (
 		<nav className="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
@@ -118,7 +147,7 @@ const Navbar = () => {
 				<ul className="navbar-nav navbar-nav-left header-links align-self-center">
 					<li></li>
 
-					<div className="search-box">
+					{/* <div className="search-box">
 						<Form action="">
 							<input type="text" name="Search" placeholder="Search..." />
 							<button type="submit" class="btn btn-default">
@@ -133,7 +162,7 @@ const Navbar = () => {
 								</svg>
 							</button>
 						</Form>
-					</div>
+					</div> */}
 					<li className="nav-item dropdown language-dropdown"></li>
 				</ul>
 
@@ -141,9 +170,9 @@ const Navbar = () => {
 					<li className="nav-item  nav-profile border-0 pl-4">
 						<h5 style={{ font: "Roboto" }}>Customer Area</h5>
 					</li>
-					<li className=" nav-item list">
+					{/* <li className=" nav-item list">
 						<a
-							href="#"
+							href="#/"
 							className="open_newsfeed desktop"
 							data-toggle="tooltip"
 							title="Share documents, ideas.."
@@ -176,16 +205,52 @@ const Navbar = () => {
 								<path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
 							</svg>
 						</a>
-					</li>
+					</li> */}
 					<li className="nav-item ">
-						<a href="#/" className="profile" aria-expanded="false">
+						<Dropdown>
+							<Dropdown.Toggle className="nav-link count-indicator p-0 toggle-arrow-hide bg-transparent">
+								<img
+									src={pic}
+									alt="user"
+									className="img img-responsive staff-profile-image-small pull-left"
+									style={{ width: "2.5rem" }}
+								/>{" "}
+							</Dropdown.Toggle>
+							<Dropdown.Menu className="navbar-dropdown preview-list">
+								<Dropdown.Item
+									className="dropdown-item  d-flex align-items-center"
+									onClick={(evt) => evt.preventDefault()}>
+									<p
+										className="mb-0 font-weight-medium float-left"
+										onClick={() => {
+											localStorage.clear();
+											history.push("/users/profile");
+										}}>
+										Profile
+									</p>
+								</Dropdown.Item>
+								<Dropdown.Item
+									className="dropdown-item  d-flex align-items-center"
+									href="!#"
+									onClick={(evt) => evt.preventDefault()}>
+									<p
+										className="mb-0 font-weight-medium float-left"
+										onClick={() => {
+											localStorage.clear();
+											history.push("/users/login");
+										}}>
+										Log Out
+									</p>
+								</Dropdown.Item>
+							</Dropdown.Menu>
+						</Dropdown>
+						{/* <a href="#" className="profile" aria-expanded="false">
 							<img
 								src={pic}
-								alt=""
 								className="img img-responsive staff-profile-image-small pull-left"
 								style={{ width: "2.5rem" }}
 							/>{" "}
-						</a>
+						</a> */}
 					</li>
 					<li className="nav-item  nav-profile border-0">
 						<Dropdown>
@@ -199,7 +264,9 @@ const Navbar = () => {
 									viewBox="0 0 16 16">
 									<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
 								</svg>
-								<span className="count">{tableRowsData.length}</span>
+								<span className="count">
+									{tableRowsData.filter((item) => item.unread !== "1").length}
+								</span>
 							</Dropdown.Toggle>
 							{/*<Dropdown.Menu className="navbar-dropdown preview-list">
 								<Dropdown.Item
@@ -215,37 +282,74 @@ const Navbar = () => {
 							</Dropdown.Menu>*/}
 							<Dropdown.Menu
 								className="dropdown-main-menu"
-								style={{ height: "400px", overflowY: "scroll" }}>
-								<Dropdown.Item className="mark-all p-3" href="#/action-1">
+								style={{ maxHeight: "400px", overflowY: "scroll" }}>
+								<Dropdown.Item
+									className="mark-all p-3"
+									onClick={() => {
+										axios
+											.post(
+												`${API}/users/readAllNotification`,
+												JSON.stringify({
+													customer_id: customer_id,
+													unread: "1",
+												}),
+												{
+													headers: {
+														"Content-Type": "application/json",
+														Authorization: `${token}`,
+													},
+												}
+											)
+											.then((res) => {
+												// console.log(res.data);
+											});
+									}}>
 									Mark all as read
 								</Dropdown.Item>
-								{filteredData?.map((item) => {
-									return (
-										<Dropdown.Item
-											onClick={() => {
-												setRead({ customer_id: item.id });
-											}}>
-											<div
-												className="d-flex justify-content-between p-2"
-												style={{
-													opacity:
-														item.unread === "0" || item.unread === null
-															? "1"
-															: "0.4",
-												}}>
-												<img
-													className="user-logo"
-													alt=""
-													src="https://ixiono.com/crm/assets/images/user-placeholder.jpg"
-												/>
-												<p className="mt-3 ml-2">
-													<span className="font-weight-bold">Admin</span> -{" "}
-													{`${item.message.slice(0, 30)}....`}
-												</p>
-											</div>
-										</Dropdown.Item>
-									);
-								})}
+								{tableRowsData
+									?.filter((visible) => visible.visible !== "1")
+									.map((item) => {
+										return (
+											<Dropdown.Item
+												// data-bs-toggle="modal"
+												// data-bs-target="#exampleModal"
+												className="d-flex justify-content-between">
+												<div
+													onClick={() => {
+														setRead({ customer_id: item.id });
+														history.push({
+															pathname: "/users/notificationmodal",
+															state: { item: item },
+														});
+													}}
+													className="d-flex justify-content-between p-2"
+													style={{
+														opacity:
+															item.unread === "0" || item.unread === null
+																? "1"
+																: "0.4",
+													}}>
+													<img
+														className="user-logo"
+														alt=""
+														src="https://ixiono.com/crm/assets/images/user-placeholder.jpg"
+													/>
+													<p className="mt-3 ml-2">
+														<span className="font-weight-bold">Admin</span> -{" "}
+														{`${item.message.slice(0, 30)}....`}
+													</p>
+												</div>
+												<i
+													type="button"
+													style={{ zIndex: "999" }}
+													onClick={() => {
+														// console.log("clicked");
+														setHide({ customer_id: item.id });
+													}}
+													className="fa-solid float-right text-danger fa-xmark"></i>
+											</Dropdown.Item>
+										);
+									})}
 
 								<div
 									className="modal fade"
@@ -328,34 +432,6 @@ const Navbar = () => {
 							</Dropdown.Menu>
 						</Dropdown>
 					</li>
-
-					{/* <Dropdown.Item
-									className="dropdown-item p-0 preview-item d-flex align-items-center border-bottom"
-									href="!#"
-									onClick={(evt) => evt.preventDefault()}>
-									<div className="d-flex">
-										<div className="py-3 px-4 d-flex align-items-center justify-content-center">
-											<i className="mdi mdi-bookmark-plus-outline mr-0"></i>
-										</div>
-										<div className="py-3 px-4 d-flex align-items-center justify-content-center border-left border-right">
-											<i className="mdi mdi-account-outline mr-0"></i>
-										</div>
-										<div className="py-3 px-4 d-flex align-items-center justify-content-center">
-											<i className="mdi mdi-alarm-check mr-0"></i>
-										</div>
-									</div>
-								</Dropdown.Item> */}
-					{/* <Dropdown.Item
-									className="dropdown-item preview-item d-flex align-items-center border-0 mt-2"
-									onClick={(evt) => evt.preventDefault()}>
-									<Trans>Manage Accounts</Trans>
-								</Dropdown.Item> */}
-
-					{/* <Dropdown.Item
-									className="dropdown-item preview-item d-flex align-items-center border-0"
-									onClick={(evt) => evt.preventDefault()}>
-									<Trans>Check Inbox</Trans>
-								</Dropdown.Item> */}
 				</ul>
 				<button
 					className="navbar-toggler navbar-toggler-right d-lg-none align-self-center"

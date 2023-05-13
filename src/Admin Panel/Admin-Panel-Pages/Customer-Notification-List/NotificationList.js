@@ -16,11 +16,11 @@ import { useHistory } from "react-router-dom";
 import API from "../../../backend";
 import "./notificationList.css";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { CSVLink } from "react-csv";
 // import AddNotification from "./Add Notification/addNotification";
 
 function NotificationList() {
-	const { ExportCSVButton } = CSVExport;
-	const [tableRowsData, setTableRowsData] = useState();
+	const [tableRowsData, setTableRowsData] = useState([]);
 	const [search, setSearch] = useState("");
 	const [Filtered, setFiltered] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -151,6 +151,7 @@ function NotificationList() {
 							<div className="row">
 								<div className="col-md-12 grid-margin">
 									<div className="row page-title-header"> </div>
+									<h5>Notifications List</h5>
 									<div className="card">
 										<div className="card-body">
 											{/* <div className="row page-title-header">
@@ -234,7 +235,7 @@ function NotificationList() {
 																autocomplete="off"
 																checked
 															/>{" "}
-															Export
+															<CSVLink data={tableRowsData}>Export</CSVLink>
 														</label>
 
 														<label
