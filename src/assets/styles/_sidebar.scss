@@ -120,7 +120,9 @@
           }
         }
       }
-
+      a.nav-link::before{
+        display: none !important;
+      }
       .nav-link {
         align-items: center;
         display: flex;
@@ -131,6 +133,7 @@
         .rtl & {
           padding: $sidebar-menu-padding-rtl;
         }
+      
 
         i {
           &.menu-arrow {

@@ -49,15 +49,11 @@ const AdminVoid = lazy(() =>
 const AdminRefund = lazy(() =>
 	import("../Admin Panel/Admin-Panel-Pages/Refund/AdminRefund")
 );
-const AdminProfile = lazy(() =>
-	import("../Admin Panel/Admin-Panel-Pages/Customer-Profile/Profile")
+const UserProfile = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Customer Profile/UserProfile")
 );
-const GetAdminProfile = lazy(() =>
-	import("../Admin Panel/Admin-Panel-Pages/Admin Get Profile/GetUserProfile")
-);
-const GetUserProfile = lazy(() =>
-	import("../Admin Panel/Admin-Panel-Pages/Get User Profile/GetUserProfile")
-);
+
+
 const GetMerchantProfile = lazy(() =>
 	import(
 		"../Admin Panel/Admin-Panel-Pages/Get Merchant Profile/GetMerchantProfile"
@@ -222,13 +218,9 @@ class AppRoutes extends Component {
 
 					<Route path="/admin/AdminVoid" component={AdminVoid} />
 					<Route path="/admin/AdminRefund" component={AdminRefund} />
-					<Route path="/admin/update-profile" component={AdminProfile} />
-					<Route path="/admin/get-profile" component={GetAdminProfile} />
-					<Route
-						exact
-						path="/admin/getUserProfile"
-						component={GetUserProfile}
-					/>
+					<Route path="/admin/userprofile" component={UserProfile} />
+					{/* <Route path="/admin/get-profile" component={GetAdminProfile} /> */}
+					
 					<Route
 						exact
 						path="/admin/getMerchantProfile"
