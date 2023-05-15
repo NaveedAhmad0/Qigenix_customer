@@ -218,7 +218,7 @@ class AppRoutes extends Component {
 
 					<Route path="/admin/AdminVoid" component={AdminVoid} />
 					<Route path="/admin/AdminRefund" component={AdminRefund} />
-					<Route path="/admin/userprofile" component={UserProfile} />
+					<Route path="/users/userprofile" component={UserProfile} />
 					{/* <Route path="/admin/get-profile" component={GetAdminProfile} /> */}
 					
 					<Route

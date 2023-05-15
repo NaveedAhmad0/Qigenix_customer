@@ -221,7 +221,7 @@ const Navbar = () => {
 									className="dropdown-item  d-flex align-items-center"
 									onClick={() => {
 											
-										history.push("/admin/userprofile");
+										history.push("/users/userprofile");
 									}}>
 									<p
 										className="mb-0 font-weight-medium float-left"
