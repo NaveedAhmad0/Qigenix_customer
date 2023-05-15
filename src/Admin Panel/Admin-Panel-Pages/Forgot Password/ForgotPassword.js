@@ -37,7 +37,10 @@ function ForgotPassword() {
 
 			console.log(JSON.stringify(response?.data));
 
-			alert(response?.data.message);
+			if (response.data.status === 200) {
+				alert(response?.data.message);
+				history.push("/users/login");
+			}
 			setpassword("");
 			setSuccess(true);
 		} catch (err) {
