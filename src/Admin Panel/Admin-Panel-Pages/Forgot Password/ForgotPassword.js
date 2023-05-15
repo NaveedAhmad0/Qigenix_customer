@@ -25,7 +25,7 @@ function ForgotPassword() {
 
 		try {
 			const response = await axios.post(
-				`https://backend.klivepay.com/api/users/forgot-password`,
+				`https://qigenix.ixiono.com/apis/users/forgot-password`,
 				JSON.stringify({ id, password }),
 				{
 					headers: { "Content-Type": "application/json" },
