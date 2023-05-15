@@ -238,12 +238,12 @@ class AppRoutes extends Component {
 
 					<Route
 						exact
-						path="/admin/get_forgotpassword_link"
+						path="/users/get_forgotpassword_link"
 						component={ForgotPasswordLink}
 					/>
 					<Route
 						exact
-						path="/admin/forgotpassword"
+						path="/users/forgotpassword"
 						component={ForgotPassword}
 					/>
 					<Route
