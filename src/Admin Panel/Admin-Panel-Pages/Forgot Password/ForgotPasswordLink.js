@@ -100,7 +100,8 @@ function ForgotPasswordLink() {
 										type="button"
 										// href="/admin/dashboard"
 										onClick={(event) => {
-											onSubmit(event);
+											// onSubmit(event);
+											history.push("/admin/forgotpassword");
 										}}
 										className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
 										submit

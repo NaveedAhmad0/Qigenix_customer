@@ -79,14 +79,14 @@ function App(props) {
 			<div className="container-scroller">
 				{!location.pathname.includes("Registration") &&
 				!location.pathname.includes("login") &&
-				!location.pathname.includes("forgotPassword")
+				!location.pathname.includes("forgotpassword")
 					? navbarComponent
 					: null}
 
 				<div className="container-fluid page-body-wrapper">
 					{location.pathname.includes("login") ||
 					location.pathname.includes("Registration") ||
-					location.pathname.includes("forgotPassword") ||
+					location.pathname.includes("forgotpassword") ||
 					location.pathname == "/admin"
 						? // location.pathname.includes("user")
 						  null
@@ -94,7 +94,7 @@ function App(props) {
 
 					<div
 						className={
-							!location.pathname.includes("forgotPassword") &&
+							!location.pathname.includes("forgotpassword") &&
 							location.pathname.includes("admin") &&
 							!location.pathname.includes("login") &&
 							!location.pathname.includes("Registration")
