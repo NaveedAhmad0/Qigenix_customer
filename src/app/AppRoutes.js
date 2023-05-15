@@ -118,7 +118,7 @@ const CustomerListOfInvoices = lazy(() =>
 		"../Admin Panel/Admin-Panel-Pages/Customer-List-Of-Invoices/CustomerInvoices"
 	)
 );
-const ListOfDeviceInvoice = lazy(() =>
+const DeviceInvoice = lazy(() =>
 	import("../Admin Panel/Admin-Panel-Pages/Device Invoice/DeviceInvoice")
 );
 
@@ -211,7 +211,7 @@ class AppRoutes extends Component {
 						path="/users/NotificationList"
 						component={CustomerNotificationList}
 					/>
-					<Route path="/users/ListOfInvoices" component={ListOfDeviceInvoice} />
+					<Route path="/users/device-invoice" component={DeviceInvoice} />
 					<Route
 						path="/users/ScannedInvoices"
 						component={CustomerListOfInvoices}

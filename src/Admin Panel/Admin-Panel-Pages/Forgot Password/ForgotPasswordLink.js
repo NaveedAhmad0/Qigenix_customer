@@ -11,7 +11,6 @@ function ForgotPasswordLink() {
 		// console.log(API);
 	}, []);
 	const [email, setEmail] = useState("");
-	const [password, setpassword] = useState("");
 	const [success, setSuccess] = useState(false);
 
 	async function onSubmit(event) {
@@ -20,7 +19,7 @@ function ForgotPasswordLink() {
 
 		try {
 			const response = await axios.get(
-				`https://qigenix.ixiono.com/apis/admin/get-forgotLink/${email}`,
+				`https://qigenix.ixiono.com/apis/users/get-forgotLink/${email}`,
 
 				{
 					headers: { "Content-Type": "application/json" },
@@ -31,13 +30,16 @@ function ForgotPasswordLink() {
 			console.log("mail", email);
 
 			console.log(JSON.stringify(response?.data));
-
+			if (response.data.status === 200) {
+				alert("Link Sent successfully , Please check your mail");
+			}
 			// const accessToken = response?.data?.accessToken;
 			// localStorage.setItem("token", response?.data?.accessToken);
 			setEmail("");
 			setSuccess(true);
 		} catch (err) {
 			console.log(err);
+			alert(err.data.message);
 			console.log(email);
 		}
 		console.log(success);
@@ -100,8 +102,8 @@ function ForgotPasswordLink() {
 										type="button"
 										// href="/admin/dashboard"
 										onClick={(event) => {
-											// onSubmit(event);
-											history.push("/admin/forgotpassword");
+											onSubmit(event);
+											// history.push("/users/forgotpassword");
 										}}
 										className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
 										submit

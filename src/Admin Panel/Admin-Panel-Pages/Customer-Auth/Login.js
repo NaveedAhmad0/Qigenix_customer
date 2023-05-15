@@ -136,7 +136,7 @@ function AdminLogin() {
 								</div>
 								<div className="my-2 d-flex justify-content-between align-items-center">
 									<a
-										href="/admin/get_forgotpassword_link"
+										href="/users/get_forgotpassword_link"
 										// onClick={(event) => event.preventDefault()}
 										className="auth-link loginTxt1">
 										Forgot password?

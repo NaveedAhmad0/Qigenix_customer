@@ -3,43 +3,47 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./forgotPassword.css";
 import logo from "../../../assets/images/logo.png";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom";
+
+const queryParameters = new URLSearchParams(window.location.search);
+const id = queryParameters.get("id");
+
 function ForgotPassword() {
+	// const { id } = useParams();
 	const history = useHistory();
 	useEffect(() => {
 		localStorage.clear();
 		// console.log(API);
 	}, []);
-	const [email, setId] = useState("");
+	// const [id, setId] = useState("");
 	const [password, setpassword] = useState("");
 	const [success, setSuccess] = useState(false);
-
+	console.log("ID", id);
 	async function onSubmit(event) {
 		event.preventDefault();
-		console.log("sdkjfshfkshdfkj", email, password);
+		console.log("sdkjfshfkshdfkj", password);
 
 		try {
-			const response = await axios.patch(
-				`https://backend.klivepay.com/api/admin/forget-password?email=${email}`,
-				JSON.stringify({ password }),
+			const response = await axios.post(
+				`https://backend.klivepay.com/api/users/forgot-password`,
+				JSON.stringify({ id, password }),
 				{
 					headers: { "Content-Type": "application/json" },
 					// withCredentials: true,
 				}
 			);
 
-			console.log("mail", email);
+			// console.log("mail", email);
 
 			console.log(JSON.stringify(response?.data));
 
-			// const accessToken = response?.data?.accessToken;
-			// localStorage.setItem("token", response?.data?.accessToken);
-			setId("");
+			alert(response?.data.message);
 			setpassword("");
 			setSuccess(true);
 		} catch (err) {
 			console.log(err);
-			console.log(email);
+			alert(err.data.message);
+			// console.log(email);
 		}
 		console.log(success);
 	}
@@ -69,7 +73,7 @@ function ForgotPassword() {
 					<div className="col-lg-4 mx-auto">
 						<div className="auth-form-light cardForgot text-left py-10 px-4 px-sm-17">
 							<form className="pt-1">
-								<div className="form-group">
+								{/* <div className="form-group">
 									<label>Email Address</label>
 									<input
 										type="email"
@@ -79,11 +83,11 @@ function ForgotPassword() {
 										value={email}
 										placeholder="Email Address"
 									/>
-								</div>
+								</div> */}
 								<div className="form-group">
 									<input
 										type="password"
-										className="form-control form-control-lg"
+										className="form-control Pinput form-control-lg"
 										id="password"
 										placeholder="New Password"
 										onChange={(e) => setpassword(e.target.value)}

@@ -221,7 +221,7 @@ function Sidebar() {
 					className={
 						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
 					}>
-					<Link className="nav-link" to="/users/ListOfInvoices">
+					<Link className="nav-link" to="/users/device-invoice">
 						<i className="mdi mdi-television menu-icon"></i>
 						<span className="menu-title">
 							<Trans>Device Invoices</Trans>
@@ -235,7 +235,7 @@ function Sidebar() {
 					<Link className="nav-link" to="/users/ScannedInvoices">
 						<i className="mdi mdi-television menu-icon"></i>
 						<span className="menu-title">
-							<Trans>Scan</Trans>
+							<Trans>Scanned invoices</Trans>
 						</span>
 					</Link>
 				</li>
@@ -271,7 +271,7 @@ function Sidebar() {
 					<Link className="nav-link" to="/users/scandevices">
 						<i className="mdi mdi-television menu-icon"></i>
 						<span className="menu-title">
-							<Trans>Scanned Devices</Trans>
+							<Trans>Scan</Trans>
 						</span>
 					</Link>
 				</li>
