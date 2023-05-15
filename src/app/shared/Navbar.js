@@ -220,23 +220,16 @@ const Navbar = () => {
 								<Dropdown.Item
 									className="dropdown-item  d-flex align-items-center"
 									onClick={() => {
-											
 										history.push("/users/userprofile");
 									}}>
-									<p
-										className="mb-0 font-weight-medium float-left"
-										>
-										Profile
-									</p>
+									<p className="mb-0 font-weight-medium float-left">Profile</p>
 								</Dropdown.Item>
 								<Dropdown.Item
 									className="dropdown-item  d-flex align-items-center"
 									onClick={() => {
 										history.push("/users/resetPassword");
 									}}>
-									<p
-										className="mb-0 font-weight-medium float-left"
-										>
+									<p className="mb-0 font-weight-medium float-left">
 										Reset Password
 									</p>
 								</Dropdown.Item>
@@ -247,11 +240,7 @@ const Navbar = () => {
 										localStorage.clear();
 										history.push("/users/login");
 									}}>
-									<p
-										className="mb-0 font-weight-medium float-left"
-										>
-										Log Out
-									</p>
+									<p className="mb-0 font-weight-medium float-left">Log Out</p>
 								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
@@ -330,7 +319,7 @@ const Navbar = () => {
 														setRead({ customer_id: item.id });
 														history.push({
 															pathname: "/users/notificationmodal",
-															state: { item: item },
+															state: { details: item },
 														});
 													}}
 													className="d-flex justify-content-between p-2"

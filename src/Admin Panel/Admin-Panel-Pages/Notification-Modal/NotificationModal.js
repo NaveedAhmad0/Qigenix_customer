@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 
 const NotificationModal = () => {
 	const location = useLocation();
-	const details = location.state.item;
+	const details = location.state.details;
 
 	const customer_id = localStorage.getItem("customerId");
 	const token = localStorage.getItem("token");

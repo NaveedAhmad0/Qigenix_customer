@@ -111,6 +111,9 @@ function NotificationList() {
 			style: {
 				color: "#4E7AED",
 			},
+			cell: (d) => {
+				return moment(d.createdAt).local().format("DD-MM-YYYY hh:mm:ss ");
+			},
 		},
 		{
 			name: "Action",
