@@ -5,141 +5,153 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
 import { useState } from "react";
 const AddCustomerForm = () => {
-	const history=useHistory()
-	const token=localStorage.getItem("token")
+	const history = useHistory();
+	const token = localStorage.getItem("token");
 	const [inputFields, setInputFields] = useState([
-		{ firstName:"",lastName:"",email:"",company:"",vatNumber:"",phone:"",website:"",currency:"",zipCode:"",address:"",language:"",city:"",state:"",country:"",groups:"",username:"",password:"" }
-	  ]);
-	  const handleFormChange = (index, event) => {
+		{
+			firstName: "",
+			lastName: "",
+			email: "",
+			company: "",
+			vatNumber: "",
+			phone: "",
+			website: "",
+			currency: "",
+			zipCode: "",
+			address: "",
+			language: "",
+			city: "",
+			state: "",
+			country: "",
+			groups: "",
+			username: "",
+			password: "",
+		},
+	]);
+	const handleFormChange = (index, event) => {
 		let data = [...inputFields];
 		data[index][event.target.name] = event.target.value;
 		setInputFields(data);
-	  };
+	};
 
-	  const handleSubmit = (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		const firstName=inputFields[0].firstName;
-		const lastName=inputFields[0].lastName;
+		const firstName = inputFields[0].firstName;
+		const lastName = inputFields[0].lastName;
 		const company = inputFields[0].company;
 		const vatNumber = inputFields[0].vatNumber;
-		const phone=inputFields[0].phone;
-		const website=inputFields[0].website;
-		const email=inputFields[0].email;
-		const currency=inputFields[0].currency;
-		const zipCode=inputFields[0].zipCode;
-		const address=inputFields[0].address;
-		const language=inputFields[0].language;
-		const city=inputFields[0].city;
-		const state=inputFields[0].state;
-		const country=inputFields[0].country;
-		const groups=inputFields[0].groups;
-		const username=inputFields[0].username;
-		const password=`${inputFields[0].firstName}@123}`;
-		const status='1'
+		const phone = inputFields[0].phone;
+		const website = inputFields[0].website;
+		const email = inputFields[0].email;
+		const currency = inputFields[0].currency;
+		const zipCode = inputFields[0].zipCode;
+		const address = inputFields[0].address;
+		const language = inputFields[0].language;
+		const city = inputFields[0].city;
+		const state = inputFields[0].state;
+		const country = inputFields[0].country;
+		const groups = inputFields[0].groups;
+		const username = inputFields[0].username;
+		const password = `${inputFields[0].firstName}@123}`;
+		const status = "1";
 
-	
-		 const data = JSON.stringify({
-		 	company: company,
-		 	firstName: firstName,
-		 	lastName:lastName ,
-		 	email: email,
-		 	vat_number: vatNumber,
-		 	mobile: phone,
-		 	website: website,
-		 	groups: groups,
-		 	currency: currency,
-		 	language: language,
-		 	address: address,
-		 	city: city,
-		 	state:state ,
-		 	zipcode: zipCode,
-		 	country:country ,
-		 	status: status,
-			username:username,
-			password:password
-		 
-		 });
-		  console.log(data);
-	
+		const data = JSON.stringify({
+			company: company,
+			firstName: firstName,
+			lastName: lastName,
+			email: email,
+			vat_number: vatNumber,
+			mobile: phone,
+			website: website,
+			groups: groups,
+			currency: currency,
+			language: language,
+			address: address,
+			city: city,
+			state: state,
+			zipcode: zipCode,
+			country: country,
+			status: status,
+			username: username,
+			password: password,
+		});
+		console.log(data);
+
 		var config = {
-		  method: "post",
-		  url: `https://qigenix.ixiono.com/apis/admin/add-customer`,
-		  headers: {
-		    "Content-Type": "application/json",
-			Authorization: `${token}`,
-		  },
-		  data: data,
+			method: "post",
+			url: `https://qigenix.ixiono.com/apis/admin/add-customer`,
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `${token}`,
+			},
+			data: data,
 		};
 		axios(config)
-		  .then(function (response) {
-		    console.log(JSON.stringify(response.data));
-			alert('Customer Added Successfully')
-		   history.push('/admin/CustomerList')
-		   
-		  })
-		  .catch(function (error) {
-		    console.log(error.response.data);
-		  });
-	  };
-
+			.then(function (response) {
+				console.log(JSON.stringify(response.data));
+				alert("Customer Added Successfully");
+				history.push("/admin/CustomerList");
+			})
+			.catch(function (error) {
+				console.log(error.response.data);
+			});
+	};
 
 	return (
-		
 		<div className="col-md-12 grid-margin">
 			<form className="form-sample mt-4">
-			{inputFields.map((input, index) => {
-				return(
-			<div key={index}>
-				<div className="row">
-					<div className="col-md-6">
-						<Form.Group className="row">
-							<div className="col-sm-12">
-								<Form.Label className=" mb-3">Customer Id</Form.Label>
+				{inputFields.map((input, index) => {
+					return (
+						<div key={index}>
+							<div className="row">
+								<div className="col-md-6">
+									<Form.Group className="row">
+										<div className="col-sm-12">
+											<Form.Label className=" mb-3">Customer Id</Form.Label>
 
-								<Form.Control
-									className="addcustomerInputN"
-									 onChange={(event) => handleFormChange(index, event)}
-									type="text"
-									name="firstName"
-									placeholder="Keywords"
-								/>
-							</div>
-						</Form.Group>
-					</div>
-					<div className="col-md-6">
-						<Form.Group className="row">
-							<div className="col-sm-12">
-								<Form.Label className=" mb-3">Device Id</Form.Label>
+											<Form.Control
+												className="addcustomerInputN"
+												onChange={(event) => handleFormChange(index, event)}
+												type="text"
+												name="firstName"
+												placeholder="Keywords"
+											/>
+										</div>
+									</Form.Group>
+								</div>
+								<div className="col-md-6">
+									<Form.Group className="row">
+										<div className="col-sm-12">
+											<Form.Label className=" mb-3">Device Id</Form.Label>
 
-								<Form.Control
-									className="addcustomerInputN"
-									 onChange={(event) => handleFormChange(index, event)}
-									type="text"
-									name="lastName"
-									placeholder="Keywords"
-								/>
+											<Form.Control
+												className="addcustomerInputN"
+												onChange={(event) => handleFormChange(index, event)}
+												type="text"
+												name="lastName"
+												placeholder="Keywords"
+											/>
+										</div>
+									</Form.Group>
+								</div>
 							</div>
-						</Form.Group>
-					</div>
-				</div>
-				<div className="row">
-					
-					<div className="col-md-6">
-						<Form.Group className="row">
-							<div className="col-sm-12">
-								<Form.Label className=" mb-3">Tax</Form.Label>
+							<div className="row">
+								<div className="col-md-12">
+									<Form.Group className="row">
+										<div className="col-sm-12">
+											<Form.Label className=" mb-3">Tax</Form.Label>
 
-								<Form.Control
-									className="addcustomerInputN"
-									 onChange={(event) => handleFormChange(index, event)}
-									type="text"
-									name="username"
-									placeholder="Keywords"
-								/>
-							</div>
-						</Form.Group>
-					</div>
-					<div className="col-md-6">
+											<Form.Control
+												className="addcustomerInputN"
+												onChange={(event) => handleFormChange(index, event)}
+												type="text"
+												name="username"
+												placeholder="Keywords"
+											/>
+										</div>
+									</Form.Group>
+								</div>
+								{/* <div className="col-md-6">
 						<Form.Group className="row">
 							<div className="col-sm-12">
 								<Form.Label className=" mb-3">Total Amount</Form.Label>
@@ -155,10 +167,10 @@ const AddCustomerForm = () => {
 								/>
 							</div>
 						</Form.Group>
-					</div>
-				</div>
-				{/* <p className="card-description"> Personal info </p> */}
-				{/*<div className="row">
+					</div> */}
+							</div>
+							{/* <p className="card-description"> Personal info </p> */}
+							{/*<div className="row">
 					<div className="col-md-12 ">
 						<Form.Group className="row">
 							<div className="col-sm-12">
@@ -361,17 +373,19 @@ const AddCustomerForm = () => {
 						</Form.Group>
 					</div>
 				</div>*/}
-				
-				<div className="row">
-					<div className="col-md-12 text-right">
-						<button className="btn btnCustomerProfileN btn-primary" onClick={handleSubmit}>
-							Save
-						</button>
-					</div>
-				</div>
-				</div>
-				);
-            })}
+
+							<div className="row">
+								<div className="col-md-12 text-right">
+									<button
+										className="btn btnCustomerProfileN btn-primary"
+										onClick={handleSubmit}>
+										Save
+									</button>
+								</div>
+							</div>
+						</div>
+					);
+				})}
 			</form>
 			{/* <div className="card">
 				<div className="card-body">
