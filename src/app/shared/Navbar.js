@@ -219,37 +219,37 @@ const Navbar = () => {
 							<Dropdown.Menu className="navbar-dropdown preview-list">
 								<Dropdown.Item
 									className="dropdown-item  d-flex align-items-center"
-									onClick={(evt) => evt.preventDefault()}>
+									onClick={() => {
+											
+										history.push("/admin/userprofile");
+									}}>
 									<p
 										className="mb-0 font-weight-medium float-left"
-										onClick={() => {
-											localStorage.clear();
-											history.push("/users/profile");
-										}}>
+										>
 										Profile
 									</p>
 								</Dropdown.Item>
 								<Dropdown.Item
 									className="dropdown-item  d-flex align-items-center"
-									onClick={(evt) => evt.preventDefault()}>
+									onClick={() => {
+										history.push("/users/resetPassword");
+									}}>
 									<p
 										className="mb-0 font-weight-medium float-left"
-										onClick={() => {
-											history.push("/users/resetPassword");
-										}}>
+										>
 										Reset Password
 									</p>
 								</Dropdown.Item>
 								<Dropdown.Item
 									className="dropdown-item  d-flex align-items-center"
 									href="!#"
-									onClick={(evt) => evt.preventDefault()}>
+									onClick={() => {
+										localStorage.clear();
+										history.push("/users/login");
+									}}>
 									<p
 										className="mb-0 font-weight-medium float-left"
-										onClick={() => {
-											localStorage.clear();
-											history.push("/users/login");
-										}}>
+										>
 										Log Out
 									</p>
 								</Dropdown.Item>

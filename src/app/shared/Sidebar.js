@@ -186,8 +186,8 @@ function Sidebar() {
 						isPathActive("/dashboard") ? "nav-item active" : "nav-item mt-4"
 					}>
 					<Link className="nav-link" to="/users/dashboard">
-						<i className="mdi mdi-television menu-icon"></i>
-						<span className="menu-title">
+						<i class="fa-solid fa-house ps-2"></i>
+						<span className="menu-title ms-3">
 							<Trans>Dashboard</Trans>
 						</span>
 					</Link>
@@ -197,8 +197,8 @@ function Sidebar() {
 						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
 					}>
 					<Link className="nav-link" to="/users/deviceinfo">
-						<i className="mdi mdi-television menu-icon"></i>
-						<span className="menu-title">
+						<i class="fa-solid fa-circle-info ps-2"></i>
+						<span className="menu-title ms-3">
 							<Trans>Device Info</Trans>
 						</span>
 					</Link>
@@ -245,8 +245,8 @@ function Sidebar() {
 						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
 					}>
 					<Link className="nav-link" to="/users/transactiondetails">
-						<i className="mdi mdi-television menu-icon"></i>
-						<span className="menu-title">
+						<i class="fa-solid fa-money-bill-transfer ps-2"></i>
+						<span className="menu-title ms-3">
 							<Trans>Transactions Details</Trans>
 						</span>
 					</Link>
@@ -257,8 +257,8 @@ function Sidebar() {
 						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
 					}>
 					<Link className="nav-link" to="/users/NotificationList">
-						<i className="mdi mdi-television menu-icon"></i>
-						<span className="menu-title">
+						<i class="fa-regular fa-bell ps-2"></i>
+						<span className="menu-title ms-3">
 							<Trans>Notification List</Trans>
 						</span>
 					</Link>
