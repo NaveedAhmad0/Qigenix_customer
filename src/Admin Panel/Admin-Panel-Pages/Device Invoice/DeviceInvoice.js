@@ -76,7 +76,7 @@ function DeviceInvoice() {
 				.then((response) => {
 					console.log(response.data);
 					setTableRowsData(response.data);
-					setFiltered(response.data);
+					setFiltered(response?.data);
 				})
 				.catch(function (error) {
 					console.log(error);

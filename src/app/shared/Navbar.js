@@ -231,6 +231,17 @@ const Navbar = () => {
 								</Dropdown.Item>
 								<Dropdown.Item
 									className="dropdown-item  d-flex align-items-center"
+									onClick={(evt) => evt.preventDefault()}>
+									<p
+										className="mb-0 font-weight-medium float-left"
+										onClick={() => {
+											history.push("/users/resetPassword");
+										}}>
+										Reset Password
+									</p>
+								</Dropdown.Item>
+								<Dropdown.Item
+									className="dropdown-item  d-flex align-items-center"
 									href="!#"
 									onClick={(evt) => evt.preventDefault()}>
 									<p

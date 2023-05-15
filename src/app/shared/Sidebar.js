@@ -235,7 +235,7 @@ function Sidebar() {
 					<Link className="nav-link" to="/users/ScannedInvoices">
 						<i className="mdi mdi-television menu-icon"></i>
 						<span className="menu-title">
-							<Trans>Scanned Invoices</Trans>
+							<Trans>Scan</Trans>
 						</span>
 					</Link>
 				</li>

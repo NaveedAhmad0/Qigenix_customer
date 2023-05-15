@@ -4,19 +4,22 @@ import { Link } from "react-router-dom";
 
 const ResetPassword = () => {
 	const [newPassword, setNewPassword] = useState("");
+	const [password, setPassword] = useState("");
 	const [success, setSuccess] = useState(false);
 	const email = localStorage.getItem("email");
+	const token = localStorage.getItem("token");
+
 	async function onSubmit(event) {
 		event.preventDefault();
 		console.log(email, newPassword);
 
 		try {
-			const response = await axios.patch(
-				`https://qigenix.ixiono.com/apis/admin/reset-Password/${email}`,
-				JSON.stringify({ newPassword }),
+			const response = await axios.put(
+				`https://qigenix.ixiono.com/apis/users/reset-Password/${email}`,
+				JSON.stringify({ password, new_password: newPassword }),
 				{
 					headers: { "Content-Type": "application/json" },
-					// withCredentials: true,
+					Authorization: `${token}`,
 				}
 			);
 
@@ -30,13 +33,14 @@ const ResetPassword = () => {
 			setSuccess(true);
 		} catch (err) {
 			console.log(err);
+			alert(err.data.message);
 			console.log(email);
 		}
 		console.log(success);
 	}
 	useEffect(() => {
 		if (success) {
-			alert("You have registered Succesfully!");
+			alert("Password changed Succesfully!");
 		}
 	}, [success]);
 	return (
@@ -47,16 +51,16 @@ const ResetPassword = () => {
 						<div className="auth-form-light text-left py-5 px-4 px-sm-5">
 							<h4>Reset Password</h4>
 							<form className="pt-3">
-								{/* <div className="form-group">
+								<div className="form-group">
 									<input
-										type="email"
+										type="password"
 										className="form-control form-control-lg"
 										id="exampleInputEmail1"
-										onChange={(e) => setEmail(e.target.value)}
-										value={email}
+										onChange={(e) => setPassword(e.target.value)}
+										value={password}
 										placeholder="Old Password"
 									/>
-								</div> */}
+								</div>
 								{/* <div className="form-group">
 									<input
 										type="email"
