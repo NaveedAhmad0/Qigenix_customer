@@ -44,11 +44,11 @@ function ForgotPasswordLink() {
 		}
 		console.log(success);
 	}
-	useEffect(() => {
-		if (success) {
-			alert("You have registered Succesfully!");
-		}
-	}, [success]);
+	// useEffect(() => {
+	// 	if (success) {
+	// 		alert("You have registered Succesfully!");
+	// 	}
+	// }, [success]);
 	return (
 		<div>
 			<div className="d-flex align-items-center auth px-0">
