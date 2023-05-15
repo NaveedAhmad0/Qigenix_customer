@@ -8,3 +8,20 @@
     border-radius: 5px;
     width: 88px;
 }
+
+.no-border {
+    border: 0;
+    box-shadow: none;
+}
+
+.customerInputN {
+    pointer-events: none;
+}
+
+.title-01 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 550;
+    font-size: 23px;
+    
+}

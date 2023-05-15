@@ -21,151 +21,114 @@ const DeviceInfoForm = () => {
 				},
 			})
 			.then((res) => {
-				console.log("repsonse", res.data);
+				console.log("repsonse", res);
 				setDetails(res.data.device);
 			});
 	}, []);
 
+	console.log(details);
+
 	return (
-		<div className="col-12 grid-margin">
-			<form className="form-sample">
-				{/* <p className="card-description"> Personal info </p> */}
-				<div className="row mt-2">
-					<div className="col-md-8">
-						<Form.Group className="row">
-							<div className="col-sm-12">
-								<Form.Label className=" mb-3">
-									<span className="text-danger">*</span> Device Id
-								</Form.Label>
-								<Form.Control
-									className="customerInputN"
-									type="text"
-									placeholder="Keywords"
-									value={details.device_id}
-								/>
-							</div>
-						</Form.Group>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-md-8">
-						<Form.Group className="row">
-							<div className="col-sm-12">
-								<Form.Label className=" mb-3">Device Name</Form.Label>
-								<Form.Control
-									className="customerInputN"
-									type="text"
-									placeholder="Keywords"
-									value={details.device_name}
-								/>
-							</div>
-						</Form.Group>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-md-8">
-						<Form.Group className="row">
-							<div className="col-sm-12">
-								<Form.Label className=" mb-3">device Brand</Form.Label>
-								<Form.Control
-									className="customerInputN"
-									type="text"
-									placeholder="Keywords"
-									value={details.device_brand}
-								/>
-							</div>
-						</Form.Group>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-md-8">
-						<Form.Group className="row">
-							<div className="col-sm-12">
-								<Form.Label className=" mb-3">Amount($)</Form.Label>
-								<Form.Control
-									className="customerInputN"
-									type="text"
-									placeholder="Keywords"
-									value={details.amount}
-								/>
-							</div>
-						</Form.Group>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-md-8">
-						<Form.Group className="row">
-							<div className="col-sm-12">
-								<Form.Label className=" mb-3">Tax</Form.Label>
-								<Form.Control
-									className="customerInputN"
-									type="text"
-									placeholder="Keywords"
-									value={details.tax_percentage + "%"}
-								/>
-							</div>
-						</Form.Group>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-md-8">
-						<Form.Group className="row">
-							<div className="col-sm-12">
-								<Form.Label className=" mb-3">Device License Key</Form.Label>
-								<Form.Control
-									className="customerInputN"
-									type="text"
-									placeholder="Keywords"
-									value={details.device_license_key}
-								/>
-							</div>
-						</Form.Group>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-md-8">
-						<Form.Group className="row">
-							<div className="col-sm-12">
-								<Form.Label className=" mb-3">Created At</Form.Label>
+		<div className="container">
+			{Object.keys(details).length > 0 ? (
+				<form>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputEmail4" className="title-01">
+								Device Id :
+							</label>
+							<input
+								type="email"
+								class="form-control customerInputN no-border "
+								id="inputEmail4"
+								value={details.device_id}
+							/>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputEmail4" className="title-01">
+								Device Name :
+							</label>
+							<input
+								type="email"
+								class="form-control customerInputN no-border"
+								id="inputEmail4"
+								value={details.device_name}
+							/>
+						</div>
 
-								<Form.Control
-									className="customerInputN"
-									type="text"
-									placeholder="Keywords"
-									value={details.createdAt}
-								/>
-							</div>
-						</Form.Group>
-					</div>
-					<div className="col-md-8">
-						<Form.Group className="row">
-							<div className="col-sm-12">
-								<Form.Label className=" mb-3">Updated At</Form.Label>
+						<div class="form-group col-md-6">
+							<label for="inputEmail4" className="title-01">
+								Device Brand :
+							</label>
+							<input
+								type="email"
+								class="form-control customerInputN no-border"
+								id="inputEmail4"
+								value={details.device_brand}
+							/>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputEmail4" className="title-01">
+								Amount($) :
+							</label>
+							<input
+								type="email"
+								class="form-control customerInputN no-border"
+								id="inputEmail4"
+								value={details.amount}
+							/>
+						</div>
 
-								<Form.Control
-									className="customerInputN"
-									type="text"
-									placeholder="Keywords"
-									value={details.updatedAt}
-								/>
-							</div>
-						</Form.Group>
-					</div>
-				</div>
+						<div class="form-group col-md-6">
+							<label for="inputEmail4" className="title-01">
+								Tax :
+							</label>
+							<input
+								type="email"
+								class="form-control customerInputN no-border"
+								id="inputEmail4"
+								value={details.tax_percentage + "%"}
+							/>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputEmail4" className="title-01">
+								Device License Key :
+							</label>
+							<input
+								type="email"
+								class="form-control customerInputN no-border"
+								id="inputEmail4"
+								value={details.device_license_key}
+							/>
+						</div>
 
-				<div className="row">
-					<div className="col-md-8 text-right">
-						<button className="btn btnCustomerProfileN btn-primary">
-							Save
-						</button>
+						<div class="form-group col-md-6">
+							<label for="inputEmail4" className="title-01">
+								Created At :
+							</label>
+							<input
+								type="email"
+								class="form-control customerInputN no-border"
+								id="inputEmail4"
+								value={details.createdAt}
+							/>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputEmail4" className="title-01">
+								Updated At :
+							</label>
+							<input
+								type="email"
+								class="form-control customerInputN no-border"
+								id="inputEmail4"
+								value={details.updatedAt}
+							/>
+						</div>
 					</div>
-				</div>
-			</form>
-			{/* <div className="card">
-				<div className="card-body">
-					
-				</div>
-			</div> */}
+				</form>
+			) : (
+				<h5 className="text-center">No Device Assigned</h5>
+			)}
 		</div>
 	);
 };

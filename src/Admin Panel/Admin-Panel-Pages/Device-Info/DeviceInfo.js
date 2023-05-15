@@ -82,14 +82,14 @@ function DeviceInfo() {
 									<div className="row">
 										<div className="col-md-12 grid-margin">
 											<div
-												className="page-title-header"
-												style={{ fontWeight: "500", fontSize: "17px" }}>
+												className="page-title-header mt-2"
+												style={{ fontWeight: "600", fontSize: "20px" }}>
 												Device Details
 											</div>
 
 											<div className="card" id="#list-home-list">
 												<div className="card-body">
-													<ul className="nav nav-tabs nav-tabs-bordered pt-3 px-2">
+													{/*<ul className="nav nav-tabs nav-tabs-bordered pt-3 px-2">
 														<li className="nav-item">
 															<button
 																className="nav-link active"
@@ -98,7 +98,7 @@ function DeviceInfo() {
 																Device Details
 															</button>
 														</li>
-													</ul>
+													</ul>*/}
 													<div className="tab-content pt-2">
 														<div
 															className="tab-pane fade show active MyTasks"

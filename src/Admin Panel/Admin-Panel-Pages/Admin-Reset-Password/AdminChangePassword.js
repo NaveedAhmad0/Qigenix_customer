@@ -12,29 +12,30 @@ const ResetPassword = () => {
 	async function onSubmit(event) {
 		event.preventDefault();
 		console.log(email, newPassword);
-
+		const data = { password, new_password: newPassword };
 		try {
-			const response = await axios.put(
-				`https://qigenix.ixiono.com/apis/users/reset-Password/${email}`,
-				JSON.stringify({ password, new_password: newPassword }),
-				{
-					headers: { "Content-Type": "application/json" },
+			var config = {
+				method: "put",
+				url: `https://qigenix.ixiono.com/apis/users/reset-Password/${email}`,
+				headers: {
+					"Content-Type": "application/json",
 					Authorization: `${token}`,
-				}
-			);
+				},
+				data: data,
+			};
+			axios(config).then(function (response) {
+				console.log("mail", email);
 
-			console.log("mail", email);
+				console.log(JSON.stringify(response?.data));
 
-			console.log(JSON.stringify(response?.data));
-
-			// const accessToken = response?.data?.accessToken;
-			// localStorage.setItem("token", response?.data?.accessToken);
-			setNewPassword("");
-			setSuccess(true);
-		} catch (err) {
-			console.log(err);
-			alert(err.data.message);
-			console.log(email);
+				// const accessToken = response?.data?.accessToken;
+				// localStorage.setItem("token", response?.data?.accessToken);
+				setNewPassword("");
+				setSuccess(true);
+			});
+		} catch (error) {
+			console.log(error.data.message);
+			alert(error.data.message);
 		}
 		console.log(success);
 	}
