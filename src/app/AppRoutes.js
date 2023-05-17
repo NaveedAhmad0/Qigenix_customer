@@ -36,7 +36,10 @@ const AdminTransaction = lazy(() =>
 	)
 );
 const CustomerSupport = lazy(() =>
-	import("../Admin Panel/Admin-Panel-Pages/Support/CustomreSupport")
+	import("../Admin Panel/Admin-Panel-Pages/Support/CustomerSupport")
+);
+const NewToken = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Support/New Token/NewToken")
 );
 const WithdrawalRequest = lazy(() =>
 	import("../Admin Panel/Admin-Panel-Pages/WithdrawalRequest/WithdrawalRequest")
@@ -145,6 +148,9 @@ const TransactionDetails = lazy(() =>
 		"../Admin Panel/Admin-Panel-Pages/Transaction-Details/TransactionDetails"
 	)
 );
+const ListOfTokens = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Support/List Of TOkens/ListOfTokens")
+);
 
 class AppRoutes extends Component {
 	render() {
@@ -192,20 +198,10 @@ class AppRoutes extends Component {
 						component={TransactionDetails}
 					/>
 
-					<Route
-						path="/admin/AdminPaymentTransaction"
-						component={AdminTransaction}
-					/>
-					<Route
-						path="/admin/WithdrawalRequest"
-						component={WithdrawalRequest}
-					/>
-					<Route
-						path="/admin/WithdrawalDetails"
-						component={WithdrawalDetails}
-					/>
 					<Route path="/users/Registration" component={SignUp} />
-					<Route path="/users/support" component={CustomerSupport} />
+					<Route path="/users/token-details" component={CustomerSupport} />
+					<Route path="/users/new-token" component={NewToken} />
+					<Route path="/users/list-of-tokens" component={ListOfTokens} />
 					<Route
 						path="/users/NotificationList"
 						component={CustomerNotificationList}
@@ -215,20 +211,10 @@ class AppRoutes extends Component {
 						path="/users/ScannedInvoices"
 						component={CustomerListOfInvoices}
 					/>
-					<Route path="/admin/CustomerList" component={CustomerList} />
-					<Route path="/admin/addCustomer" component={AddCustomer} />
-					<Route path="/admin/CustomerDetails" component={CustomerDetails} />
 
-					<Route path="/admin/AdminVoid" component={AdminVoid} />
-					<Route path="/admin/AdminRefund" component={AdminRefund} />
 					<Route path="/users/userprofile" component={UserProfile} />
 					{/* <Route path="/admin/get-profile" component={GetAdminProfile} /> */}
 
-					<Route
-						exact
-						path="/admin/getMerchantProfile"
-						component={GetMerchantProfile}
-					/>
 					<Route path="/users/resetPassword" component={AdminChangePassword} />
 
 					<Route
@@ -241,19 +227,7 @@ class AppRoutes extends Component {
 						path="/users/forgotpassword"
 						component={ForgotPassword}
 					/>
-					<Route
-						path="/admin/AdminMerchantProfile"
-						component={AdminMerchantProfile}
-					/>
-					<Route path="/admin/AdminManageUser" component={AdminManageUser} />
-					<Route path="/admin/AdminManageRole" component={AdminManageRole} />
-					<Route
-						path="/admin/assign-merchnat-to-users"
-						component={AssignMerchToUser}
-					/>
 
-					<Route path="/admin/error-pages/error-404" component={Error404} />
-					<Route path="/admin/error-pages/error-500" component={Error500} />
 					{/* <Route path="*" component={<Redirect to="/admin/login" />} /> */}
 					<Redirect to="/users/login" />
 				</Switch>

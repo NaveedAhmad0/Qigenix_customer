@@ -1,2 +1,0 @@
-(window["webpackJsonpklive-admin"]=window["webpackJsonpklive-admin"]||[]).push([[48],{844:function(n,e,i){"use strict";i.r(e);var a=i(0),t=i.n(a);e.default=function(){return t.a.createElement("div",null)}}}]);
-//# sourceMappingURL=48.252d5fd5.chunk.js.map

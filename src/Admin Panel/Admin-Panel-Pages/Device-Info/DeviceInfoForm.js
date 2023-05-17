@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import "./DeviceInfoForm.css";
+import copy from "copy-to-clipboard";
 import axios from "axios";
 import moment from "moment";
 import API from "../../../backend";
-
 const DeviceInfoForm = () => {
 	// const details = location.state.details;
 	// console.log("DETAILSSS", details.device);
+	const [copied, setCopied] = useState(false);
 	const customer_id = localStorage.getItem("customerId");
 	const token = localStorage.getItem("token");
 	const [details, setDetails] = useState({});
+	const licenseKey = details.device_license_key;
+	const copyToClipboard = (e) => {
+		e.preventDefault();
+		copy(licenseKey);
+		setCopied(true);
+		setTimeout(() => {
+			setCopied(false);
+		}, 2000);
+		// alert(`You have copied "${licenseKey}"`);
+	};
 
 	useEffect(() => {
 		axios
@@ -92,7 +103,15 @@ const DeviceInfoForm = () => {
 						</div>
 						<div class="form-group col-md-6">
 							<label for="inputEmail4" className="title-01">
-								Device License Key :
+								Device License Key :{" "}
+								<span onClick={(e) => copyToClipboard(e)}>
+									{copied ? (
+										<i class="fa-solid text-primary fa-check"></i>
+									) : (
+										// "copied"
+										<i class="fa-regular fa-paste"></i>
+									)}
+								</span>
 							</label>
 							<input
 								type="email"

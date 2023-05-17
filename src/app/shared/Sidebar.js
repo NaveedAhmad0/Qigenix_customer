@@ -279,7 +279,7 @@ function Sidebar() {
 					className={
 						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
 					}>
-					<Link className="nav-link" to="/users/support">
+					<Link className="nav-link" to="/users/list-of-tokens">
 						<i class="fa-solid fa-qrcode ps-2"></i>
 						<span className="menu-title ms-3">
 							<Trans>Support</Trans>
