@@ -52,7 +52,7 @@ function AdminDashboard() {
 				.then(function (response) {
 					setDeviceId(response.data.device.device_id);
 					setDeviceStatus(
-						response.data.device.status === "0" ? "Active" : "Not Active"
+						response.data.device.status === "1" ? "Active" : "Not Active"
 					);
 					// console.log(response.data.notifications);
 				})

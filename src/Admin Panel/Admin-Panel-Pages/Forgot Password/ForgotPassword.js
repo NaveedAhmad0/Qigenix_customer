@@ -70,7 +70,7 @@ function ForgotPassword() {
 						<br />
 					</div>
 					<div className="text-center mt-5">
-						<h4 className="ptext-primary">Get Forgot Password Link</h4>
+						<h4 className="ptext-primary">Reset Password</h4>
 						<br />
 					</div>
 					<div className="col-lg-4 mx-auto">

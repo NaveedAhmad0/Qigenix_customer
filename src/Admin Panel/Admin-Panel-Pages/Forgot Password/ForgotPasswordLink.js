@@ -15,7 +15,6 @@ function ForgotPasswordLink() {
 
 	async function onSubmit(event) {
 		event.preventDefault();
-		console.log("sdkjfshfkshdfkj", email);
 
 		try {
 			const response = await axios.get(
@@ -29,9 +28,13 @@ function ForgotPasswordLink() {
 
 			console.log("mail", email);
 
-			console.log(JSON.stringify(response?.data));
+			console.log(JSON.stringify(response));
 			if (response.data.status === 200) {
 				alert("Link Sent successfully , Please check your mail");
+			} else if (response.data.status === 404) {
+				alert(response.data.message);
+			} else {
+				alert("something went wrong");
 			}
 			// const accessToken = response?.data?.accessToken;
 			// localStorage.setItem("token", response?.data?.accessToken);
@@ -39,8 +42,7 @@ function ForgotPasswordLink() {
 			setSuccess(true);
 		} catch (err) {
 			console.log(err);
-			alert(err.data.message);
-			console.log(email);
+			alert(err.response.data.message);
 		}
 		console.log(success);
 	}
@@ -64,7 +66,7 @@ function ForgotPasswordLink() {
 						<br />
 					</div>
 					<div className="text-center mt-5">
-						<h4 className="ptext-primary">Get Forgot Password Link</h4>
+						<h4 className="ptext-primary"> Forgot Password </h4>
 						<br />
 					</div>
 					<div className="col-lg-4 mx-auto">
@@ -81,21 +83,6 @@ function ForgotPasswordLink() {
 										placeholder="Email Address"
 									/>
 								</div>
-								{/* <div className="form-group">
-									<input
-										type="password"
-										className="form-control form-control-lg"
-										id="password"
-										placeholder="New Password"
-										onChange={(e) => setpassword(e.target.value)}
-										value={password}
-									/>
-								</div> */}
-								{/* <div className="form-group">
-									<Link to="/admin/login">
-										<h5 className="text-primary">Login?</h5>
-									</Link>
-								</div> */}
 
 								<div className="mt-3">
 									<button

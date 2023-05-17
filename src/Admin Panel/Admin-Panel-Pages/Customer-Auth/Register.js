@@ -398,18 +398,18 @@ function UserRegistration() {
 														<FontAwesomeIcon icon={faInfoCircle} />
 														Must contain a capital letter.
 														<br />
-														Must container a small letter.
+														Must contain a small letter.
 														<br />
-														Must container a number
+														Must contain a number
 														<br />
-														Must container a special letter(! @ # $ % ).
+														Must contain a special letter(! @ # $ % ).
 													</p>
 												) : (
 													""
 												)}
 											</div>
 											<div className="form-group">
-												<label className={`${styles.registerLabel}`}>
+												<label className={`signFormLabel`}>
 													Confirm Password {""}
 													<span className="text-danger">*</span>{" "}
 													{matchFocus && validMatch ? (
@@ -468,7 +468,7 @@ function UserRegistration() {
 										<form className="pt-3">
 											<div className="form-group">
 												<ReCAPTCHA
-													sitekey="6Lf49RIiAAAAAHf6c0KwqiT2RTnQp2D_UWj07Y-x"
+													sitekey="6LcvXxImAAAAAJY7LXcUKNoe6_AZZCTRjGfRI6cQ"
 													onChange={(value) => {
 														if (value) {
 															setCaptcha(true);

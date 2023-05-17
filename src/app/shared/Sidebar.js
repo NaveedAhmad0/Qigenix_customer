@@ -222,7 +222,7 @@ function Sidebar() {
 						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
 					}>
 					<Link className="nav-link" to="/users/device-invoice">
-					<i class="fa-regular fa-file-lines ps-2"></i>
+						<i class="fa-regular fa-file-lines ps-2"></i>
 						<span className="menu-title ms-3">
 							<Trans>Device Invoices</Trans>
 						</span>
@@ -233,7 +233,7 @@ function Sidebar() {
 						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
 					}>
 					<Link className="nav-link" to="/users/ScannedInvoices">
-					<i class="fa-solid fa-barcode ps-2"></i>
+						<i class="fa-solid fa-barcode ps-2"></i>
 						<span className="menu-title ms-3">
 							<Trans>Scanned invoices</Trans>
 						</span>
@@ -269,9 +269,20 @@ function Sidebar() {
 						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
 					}>
 					<Link className="nav-link" to="/users/scandevices">
-					<i class="fa-solid fa-qrcode ps-2"></i>
+						<i class="fa-solid fa-qrcode ps-2"></i>
 						<span className="menu-title ms-3">
 							<Trans>Scan</Trans>
+						</span>
+					</Link>
+				</li>
+				<li
+					className={
+						isPathActive("/dashboard") ? "nav-item active" : "nav-item"
+					}>
+					<Link className="nav-link" to="/users/support">
+						<i class="fa-solid fa-qrcode ps-2"></i>
+						<span className="menu-title ms-3">
+							<Trans>Support</Trans>
 						</span>
 					</Link>
 				</li>

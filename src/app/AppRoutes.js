@@ -35,6 +35,9 @@ const AdminTransaction = lazy(() =>
 		"../Admin Panel/Admin-Panel-Pages/Admin-Payment_Transaction/Transaction"
 	)
 );
+const CustomerSupport = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Support/CustomreSupport")
+);
 const WithdrawalRequest = lazy(() =>
 	import("../Admin Panel/Admin-Panel-Pages/WithdrawalRequest/WithdrawalRequest")
 );
@@ -52,7 +55,6 @@ const AdminRefund = lazy(() =>
 const UserProfile = lazy(() =>
 	import("../Admin Panel/Admin-Panel-Pages/Customer Profile/UserProfile")
 );
-
 
 const GetMerchantProfile = lazy(() =>
 	import(
@@ -203,6 +205,7 @@ class AppRoutes extends Component {
 						component={WithdrawalDetails}
 					/>
 					<Route path="/users/Registration" component={SignUp} />
+					<Route path="/users/support" component={CustomerSupport} />
 					<Route
 						path="/users/NotificationList"
 						component={CustomerNotificationList}
@@ -220,7 +223,7 @@ class AppRoutes extends Component {
 					<Route path="/admin/AdminRefund" component={AdminRefund} />
 					<Route path="/users/userprofile" component={UserProfile} />
 					{/* <Route path="/admin/get-profile" component={GetAdminProfile} /> */}
-					
+
 					<Route
 						exact
 						path="/admin/getMerchantProfile"

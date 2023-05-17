@@ -85,7 +85,7 @@ function AdminLogin() {
 									</Form.Label>
 									<Form.Control
 										type="email"
-										placeholder="Username"
+										placeholder="Email"
 										onChange={(event) => handleChange(event)}
 										value={email}
 										size="lg"

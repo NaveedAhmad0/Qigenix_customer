@@ -21,10 +21,11 @@ const Navbar = () => {
 		customer_id: "",
 	});
 
-	const [allNotifications, setallNotifications] = useState([]);
+	const [userName, setUserName] = useState("");
 	const [hideStatus, setHideStatus] = useState(false);
 	const token = localStorage.getItem("token");
 	const customer_id = localStorage.getItem("customerId");
+	const email = localStorage.getItem("email");
 	const history = useHistory();
 	const [count, setCount] = useState(0);
 	const [readStatus, setReadStatus] = useState(false);
@@ -58,8 +59,33 @@ const Navbar = () => {
 			console.log(error);
 		}
 	};
+	const fetchCustomerData = async () => {
+		try {
+			var config = {
+				method: "get",
+				url: `https://qigenix.ixiono.com/apis/users/getDetails/${email}`,
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `${token}`,
+				},
+			};
+			axios(config)
+				.then(function (response) {
+					console.log(response.data);
+					setUserName(response.data.username);
+					// console.log(response.data.notifications);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	useEffect(() => {
 		fetchData();
+		fetchCustomerData();
 	}, []);
 	useEffect(() => {
 		fetchData();
@@ -168,7 +194,7 @@ const Navbar = () => {
 
 				<ul className="navbar-nav navbar-nav-right dropdwn">
 					<li className="nav-item  nav-profile border-0 pl-4">
-						<h5 style={{ font: "Roboto" }}>Customer Area</h5>
+						<h5 style={{ font: "Roboto" }}>{`${userName} (User)`}</h5>
 					</li>
 					{/* <li className=" nav-item list">
 						<a
