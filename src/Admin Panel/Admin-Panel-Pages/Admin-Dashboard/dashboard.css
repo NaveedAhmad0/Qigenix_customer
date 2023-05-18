@@ -9,6 +9,10 @@
     font-style: normal;
     }
 
+    .modal-header .close {
+ display: none !important;
+    }
+
 .panel-body {
     box-sizing: border-box;
     /* position: absolute; */

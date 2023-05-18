@@ -14,8 +14,8 @@ function AdminLogin() {
 	}, []);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [success, setSuccess] = useState(false);
-	const [errMsg, setErrMsg] = useState("");
+
+	const [errMsg, setErrMsg] = useState("")
 	// const logindetails = { email, password };
 
 	// const navigate = Redirect();
@@ -47,7 +47,10 @@ function AdminLogin() {
 			setEmail("");
 			setPassword("");
 			if (response?.data?.status === 200) {
-				setSuccess(true);
+		
+				history.push({pathname:"/users/dashboard",state:{details:response.data}} )
+				
+
 			} else {
 				setErrMsg(response?.data?.message);
 			}
@@ -57,7 +60,7 @@ function AdminLogin() {
 				setErrMsg("No Server Response");
 			} else if (err.response?.status === 403) {
 				setErrMsg("Invalid Credentialials");
-				setSuccess(false);
+				
 			} else {
 				setErrMsg("Login failed");
 			}
@@ -120,7 +123,7 @@ function AdminLogin() {
 								</div>
 
 								<div className="mt-3">
-									{!success ? (
+								
 										<button
 											type="button"
 											// href="/admin/dashboard"
@@ -130,9 +133,7 @@ function AdminLogin() {
 											className="btn btn-block rounded-lg loginbtn btn-lg font-weight-medium auth-form-btn">
 											Login
 										</button>
-									) : (
-										<Redirect to="/users/dashboard" />
-									)}
+								
 								</div>
 								<div className="my-2 d-flex justify-content-between align-items-center">
 									<a
