@@ -8,7 +8,9 @@ import API from "../../../backend";
 const CustomerSupport = () => {
 	const [tableRowsData, setTableRowsData] = useState([]);
 	const [subject, setSubject] = useState("");
-	const [count, setCount] = useState(0);
+	const [custId, setCustId] = useState("");
+	const [message, setMessage] = useState("");
+	const [toggle, setToggle] = useState(false);
 
 	const location = useLocation();
 	const token = localStorage.getItem("token");
@@ -27,11 +29,41 @@ const CustomerSupport = () => {
 			axios(config)
 				.then(function (response) {
 					setTableRowsData(response.data.tokens.tokenMessages);
-					for (let i = 0; i < response.data.tokens.tokenMessages.length; i++) {
-						setCount(count + i);
-					}
+
 					setSubject(response.data.tokens.subject);
+					setCustId(response.data.tokens.customer_id);
 					console.log(response.data.tokens.tokenMessages);
+				})
+				.catch(function (error) {
+					console.log(error.data.tokens.tokenMessages);
+				});
+		} catch (error) {
+			console.log(error.data.tokens.tokenMessages);
+		}
+	};
+	const sendMessage = async (event) => {
+		event.preventDefault();
+		const data = {
+			senderID: custId,
+			token_id: tokenId,
+			message: message,
+		};
+		try {
+			var config = {
+				method: "post",
+				url: `${API}/users/send-token-message`,
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `${token}`,
+				},
+				data: data,
+			};
+			axios(config)
+				.then(function (response) {
+					alert(response.data.message);
+					console.log(response.data.message);
+					setToggle(!toggle);
+					setMessage("");
 				})
 				.catch(function (error) {
 					console.log(error.response.data.tokens.tokenMessages);
@@ -40,9 +72,13 @@ const CustomerSupport = () => {
 			console.log(error.response.data.tokens.tokenMessages);
 		}
 	};
+
 	useEffect(() => {
 		fetchData();
 	}, []);
+	useEffect(() => {
+		fetchData();
+	}, [toggle]);
 
 	return (
 		<div>
@@ -71,14 +107,14 @@ const CustomerSupport = () => {
 													class="accordion-button"
 													type="button"
 													data-bs-toggle="collapse"
-													data-bs-target={`#collapse${count}`}
+													data-bs-target={`#collapse${item.id}`}
 													aria-expanded="true"
-													aria-controls={`collapse${count}`}>
+													aria-controls={`collapse${item.id}`}>
 													{item.message}
 												</button>
 											</h2>
 											<div
-												id={`collapse${count}`}
+												id={`collapse${item.id}`}
 												class="accordion-collapse collapse show"
 												data-bs-parent="#accordionExample">
 												<div class="accordion-body">{item.message}</div>
@@ -163,7 +199,8 @@ const CustomerSupport = () => {
 											className="form-control"
 											id="exampleFormControlTextarea1"
 											name="mssage"
-											// onChange={(event) => handleFormChange(index, event)}
+											value={message}
+											onChange={(event) => setMessage(event.target.value)}
 											rows="4"></textarea>
 									</div>
 								</Form.Group>
@@ -186,7 +223,7 @@ const CustomerSupport = () => {
 										type="button"
 										// href="/admin/dashboard"
 										onClick={(event) => {
-											// onSubmit(event);
+											sendMessage(event);
 										}}
 										className="btn btn-primary btn-block rounded-lg loginbtn btn-lg font-weight-medium auth-form-btn">
 										Submit
