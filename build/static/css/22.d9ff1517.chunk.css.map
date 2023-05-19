@@ -1,0 +1,1 @@
+{"version":3,"sources":["customerSupport.css"],"names":[],"mappings":"AAAA,YACI,gBAAiB,CACjB,iBACJ","file":"22.d9ff1517.chunk.css","sourcesContent":[".messageBox{\n    max-height: 500px;\n    overflow-y: scroll;\n}"]}

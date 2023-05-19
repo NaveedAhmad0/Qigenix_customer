@@ -4,6 +4,7 @@ import "./customerSupport.css";
 import { Link, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
 import API from "../../../backend";
+import moment from "moment";
 
 const CustomerSupport = () => {
 	const [tableRowsData, setTableRowsData] = useState([]);
@@ -98,35 +99,55 @@ const CustomerSupport = () => {
 							<h4 className="text-black">
 								Subject: <span className="h5 text-primary">{subject}</span>{" "}
 							</h4>
-							<div class="accordion" id="accordionExample">
+							<div className="accordion" id="accordionExample">
 								{tableRowsData.map((item) => {
 									return (
-										<div class="accordion-item">
-											<h2 class="accordion-header">
-												<button
-													class="accordion-button"
-													type="button"
-													data-bs-toggle="collapse"
-													data-bs-target={`#collapse${item.id}`}
-													aria-expanded="true"
-													aria-controls={`collapse${item.id}`}>
-													{item.message}
-												</button>
-											</h2>
-											<div
-												id={`collapse${item.id}`}
-												class="accordion-collapse collapse show"
-												data-bs-parent="#accordionExample">
-												<div class="accordion-body">{item.message}</div>
-											</div>
+										<div className="row">
+											<p
+												className={
+													item.sentFrom === "user"
+														? "message p-1 text-right"
+														: item.sentFrom === "admin" &&
+														  "message p-1 text-left"
+												}>
+												{item.message} <br />
+												<p style={{ fontSize: "9px" }}>
+													{moment(item.createdAt)
+														.local()
+														.format("DD-MM-YYYY hh:mm:ss ")}
+												</p>
+											</p>
 										</div>
+										// <div
+										// 	className={
+										// 		item.sentFrom === "user" &&
+										// 		` text-right accordion-item `
+										// 	}>
+										// 	<h2 className="accordion-header">
+										// 		<button
+										// 			className="accordion-button"
+										// 			type="button"
+										// 			data-bs-toggle="collapse"
+										// 			data-bs-target={`#collapse${item.id}`}
+										// 			aria-expanded="true"
+										// 			aria-controls={`collapse${item.id}`}>
+										// 			{item.message}
+										// 		</button>
+										// 	</h2>
+										// 	<div
+										// 		id={`collapse${item.id}`}
+										// 		className="accordion-collapse collapse show"
+										// 		data-bs-parent="#accordionExample">
+										// 		<div className="accordion-body">{item.message}</div>
+										// 	</div>
+										// </div>
 									);
 								})}
 
-								{/* <div class="accordion-item">
-									<h2 class="accordion-header">
+								{/* <div className="accordion-item">
+									<h2 className="accordion-header">
 										<button
-											class="accordion-button collapsed"
+											className="accordion-button collapsed"
 											type="button"
 											data-bs-toggle="collapse"
 											data-bs-target="#collapseTwo"
@@ -137,9 +158,9 @@ const CustomerSupport = () => {
 									</h2>
 									<div
 										id="collapseTwo"
-										class="accordion-collapse collapse"
+										className="accordion-collapse collapse"
 										data-bs-parent="#accordionExample">
-										<div class="accordion-body">
+										<div className="accordion-body">
 											<strong>This is the second item's accordion body.</strong>{" "}
 											It is hidden by default, until the collapse plugin adds
 											the appropriate classes that we use to style each element.
@@ -152,10 +173,10 @@ const CustomerSupport = () => {
 										</div>
 									</div>
 								</div>
-								<div class="accordion-item">
-									<h2 class="accordion-header">
+								<div className="accordion-item">
+									<h2 className="accordion-header">
 										<button
-											class="accordion-button collapsed"
+											className="accordion-button collapsed"
 											type="button"
 											data-bs-toggle="collapse"
 											data-bs-target="#collapseThree"
@@ -166,9 +187,9 @@ const CustomerSupport = () => {
 									</h2>
 									<div
 										id="collapseThree"
-										class="accordion-collapse collapse"
+										className="accordion-collapse collapse"
 										data-bs-parent="#accordionExample">
-										<div class="accordion-body">
+										<div className="accordion-body">
 											<strong>This is the third item's accordion body.</strong>{" "}
 											It is hidden by default, until the collapse plugin adds
 											the appropriate classes that we use to style each element.
