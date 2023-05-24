@@ -23,9 +23,42 @@ function ListOfTokens() {
 	const [Filtered, setFiltered] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [toggle, setToggle] = useState(false);
+	const [toggle2, setToggle2] = useState(true);
+	const [senderId, setSenderId] = useState("");
+
 	const customer_id = localStorage.getItem("customerId");
 	const token = localStorage.getItem("token");
 	const history = useHistory();
+
+	const disableToken = async (token_id, status) => {
+		const obj = {
+			senderID: customer_id,
+			token_id: token_id,
+			tokenStatus: status === "0" ? "1" : "0",
+		};
+
+		try {
+			var config = {
+				method: "post",
+				url: `https://qigenix.ixiono.com/apis/users/close-reopen`,
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `${token}`,
+				},
+				data: obj,
+			};
+			axios(config)
+				.then(function (response) {
+					setToggle2(!toggle2);
+					alert(response.data.message);
+				})
+				.catch(function (error) {
+					console.log(error.response.data);
+				});
+		} catch (error) {
+			console.log(error.response.data);
+		}
+	};
 
 	const fetchData = async () => {
 		try {
@@ -53,6 +86,9 @@ function ListOfTokens() {
 	useEffect(() => {
 		fetchData();
 	}, []);
+	useEffect(() => {
+		fetchData();
+	}, [toggle2]);
 
 	useEffect(() => {}, [tableRowsData]);
 
@@ -108,6 +144,22 @@ function ListOfTokens() {
 			style: {
 				color: "#4E7AED",
 			},
+		},
+		{
+			name: "Active",
+			cell: (row) => [
+				<div class="form-check form-switch text-center">
+					<input
+						class="form-check-input"
+						type="checkbox"
+						role="switch"
+						name="status"
+						id="flexSwitchCheckChecked"
+						checked={row.tokenStatus === "1" ? true : false}
+						onClick={() => disableToken(row.token_id, row.tokenStatus)}></input>
+				</div>,
+			],
+			sortable: false,
 		},
 		{
 			name: "Ticket Status",

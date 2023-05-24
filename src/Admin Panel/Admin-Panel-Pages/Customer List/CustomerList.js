@@ -122,20 +122,7 @@ function CustomerList() {
 				color: "#4E7AED",
 			},
 		},
-		{
-			name: "active",
-			cell: (d) => [
-				<div class="form-check form-switch text-center">
-					<input
-						class="form-check-input"
-						type="checkbox"
-						role="switch"
-						id="flexSwitchCheckChecked"
-						checked={d.status === "1" ? false : true}></input>
-				</div>,
-			],
-			sortable: false,
-		},
+
 		{
 			name: "Groups",
 			cell: (d) => [
