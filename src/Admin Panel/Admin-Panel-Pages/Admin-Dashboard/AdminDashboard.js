@@ -140,6 +140,7 @@ function AdminDashboard() {
 					</Row>
 				</Modal.Footer>
 			</Modal>
+
 			<div className="container">
 				<div className="row">
 					<div className=" col-xl-4 col-lg-6 col-md-6 col-sm-12 card-section">
