@@ -309,6 +309,7 @@ const Navbar = () => {
 							<Dropdown.Menu
 								className="dropdown-main-menu"
 								style={{ maxHeight: "400px", overflowY: "scroll" }}>
+									
 								<Dropdown.Item
 									className="mark-all p-3"
 									onClick={() => {
@@ -330,7 +331,9 @@ const Navbar = () => {
 												// console.log(res.data);
 											});
 									}}>
-									Mark all as read
+									
+								<span style={{textDecoration:"underline"}} class="text-primary"> 	Mark all as read
+									</span>
 								</Dropdown.Item>
 								{tableRowsData
 									?.filter((visible) => visible.visible !== "1")
@@ -339,7 +342,7 @@ const Navbar = () => {
 											<Dropdown.Item
 												// data-bs-toggle="modal"
 												// data-bs-target="#exampleModal"
-												className="d-flex justify-content-between">
+												className="d-flex justify-content-between ">
 												<div
 													onClick={() => {
 														setRead({ customer_id: item.id });
@@ -372,7 +375,7 @@ const Navbar = () => {
 														// console.log("clicked");
 														setHide({ customer_id: item.id });
 													}}
-													className="fa-solid float-right text-danger fa-xmark"></i>
+													className="fa-solid float-right text-danger fa-xmark pt-3"></i>
 											</Dropdown.Item>
 										);
 									})}

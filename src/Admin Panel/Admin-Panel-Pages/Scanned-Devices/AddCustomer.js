@@ -51,7 +51,7 @@ function AddCustomer() {
 														className="nav-link active"
 														data-bs-toggle="tab"
 														data-bs-target="#MyTasks">
-														Customer Details
+														Patient Details
 													</button>
 												</li>
 												{/*<li className="nav-item">
