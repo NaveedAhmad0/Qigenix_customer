@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./login.css";
 import { Redirect } from "react-router-dom";
-import { Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import axios from "axios";
 import logo from "../../../assets/images/logo.png";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -13,9 +13,10 @@ function AdminLogin() {
 		console.log(API);
 	}, []);
 	const [email, setEmail] = useState("");
+	const [toggle, setToggle] = useState(false);
 	const [password, setPassword] = useState("");
 
-	const [errMsg, setErrMsg] = useState("")
+	const [errMsg, setErrMsg] = useState("");
 	// const logindetails = { email, password };
 
 	// const navigate = Redirect();
@@ -47,10 +48,15 @@ function AdminLogin() {
 			setEmail("");
 			setPassword("");
 			if (response?.data?.status === 200) {
-		
-				history.push({pathname:"/users/dashboard",state:{details:response.data}} )
-				
-
+				// const data = JSON.stringify(response.data.device);
+				// localStorage.setItem("data", data);
+				// localStorage.setItem("device", response.data.device);
+				localStorage.setItem("deviceId", response.data.device.device_id);
+				// history.push("/users/dashboard");
+				history.push({
+					pathname: "/users/dashboard",
+					state: { details: response.data },
+				});
 			} else {
 				setErrMsg(response?.data?.message);
 			}
@@ -60,7 +66,6 @@ function AdminLogin() {
 				setErrMsg("No Server Response");
 			} else if (err.response?.status === 403) {
 				setErrMsg("Invalid Credentialials");
-				
 			} else {
 				setErrMsg("Login failed");
 			}
@@ -95,19 +100,32 @@ function AdminLogin() {
 										className="h-auto rounded-lg border-primary"
 									/>
 								</Form.Group>
-								<Form.Group className="mb-3" controlId="formBasicPassword">
-									<Form.Label className="loginFormLabel mb-3">
-										<p>Password</p>
-									</Form.Label>
+								<Form.Label className="loginFormLabel mb-3">
+									<p>Password</p>
+								</Form.Label>
+								<InputGroup className="mb-3" controlId="formBasicPassword">
 									<Form.Control
-										type="password"
+										type={toggle ? "text" : "password"}
 										placeholder="Password"
 										onChange={(event) => handleChangeone(event)}
 										value={password}
+										required
 										size="lg"
-										className="h-auto rounded-lg border-primary"
+										className="h-auto border-primary"
 									/>
-								</Form.Group>
+									<InputGroup.Text
+										className=" border-primary"
+										id="basic-addon1"
+										onClick={() => {
+											setToggle(!toggle);
+										}}>
+										{toggle ? (
+											<i class="fa-regular fa-eye"></i>
+										) : (
+											<i class="fa-regular fa-eye-slash"></i>
+										)}
+									</InputGroup.Text>
+								</InputGroup>
 
 								<div className="my-2 d-flex justify-content-between align-items-center">
 									<div className="form-check">
@@ -123,17 +141,15 @@ function AdminLogin() {
 								</div>
 
 								<div className="mt-3">
-								
-										<button
-											type="button"
-											// href="/admin/dashboard"
-											onClick={(event) => {
-												onSubmit(event);
-											}}
-											className="btn btn-block rounded-lg loginbtn btn-lg font-weight-medium auth-form-btn">
-											Login
-										</button>
-								
+									<button
+										type="button"
+										// href="/admin/dashboard"
+										onClick={(event) => {
+											onSubmit(event);
+										}}
+										className="btn btn-block rounded-lg loginbtn btn-lg font-weight-medium auth-form-btn">
+										Login
+									</button>
 								</div>
 								<div className="my-2 d-flex justify-content-between align-items-center">
 									<a

@@ -27,6 +27,7 @@ const MOBILE_REGEX = /^[0-9]{8,}$/;
 function UserRegistration() {
 	const userRef = useRef();
 	const errRef = useRef();
+	const captchaRef = useRef();
 
 	const [username, setUserName] = useState("");
 	const [validName, setValidName] = useState(false);
@@ -56,6 +57,7 @@ function UserRegistration() {
 	const [success, setSuccess] = useState(false);
 	const [show, setShow] = useState(false);
 	const [show1, setShow1] = useState(false);
+	const [accepted, setAccepted] = useState(false);
 
 	useEffect(() => {
 		userRef.current.focus();
@@ -95,6 +97,30 @@ function UserRegistration() {
 		setErrMsg("");
 	}, [password, username, matchPwd]);
 
+	const verifyCaptcha = (token) => {
+		// e.preventDefault();
+		console.log("Token : ", token);
+		const obj = {
+			token: token,
+		};
+
+		axios
+			.post("https://qigenix.ixiono.com/apis/admin/verify-captcha", obj)
+			.then((res) => {
+				console.log("Response : ", res.data);
+				if (res.data.message === "Human") {
+					setAccepted(true);
+				} else {
+					captchaRef.current.reset();
+					setAccepted(false);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+				captchaRef.current.reset();
+				setAccepted(false);
+			});
+	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		// if button enabled with JS hack
@@ -468,13 +494,10 @@ function UserRegistration() {
 										<form className="pt-3">
 											<div className="form-group">
 												<ReCAPTCHA
-													sitekey="6LcvXxImAAAAAJY7LXcUKNoe6_AZZCTRjGfRI6cQ"
-													onChange={(value) => {
-														if (value) {
-															setCaptcha(true);
-														}
-														console.log("Captcha Value", value);
-													}}
+													className="recap"
+													sitekey="6LdKlLglAAAAAJhUFcG_6yGx7o0nKgOwnM5yJ5jy"
+													onChange={(value) => verifyCaptcha(value)}
+													ref={captchaRef}
 												/>
 											</div>
 											{/* <div className="mb-4">
@@ -529,7 +552,7 @@ function UserRegistration() {
 													!validMobile ||
 													!validEmail ||
 													!validMatch ||
-													!captcha
+													!accepted
 														? true
 														: false
 												}
