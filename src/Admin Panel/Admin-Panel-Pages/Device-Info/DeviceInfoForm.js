@@ -34,6 +34,9 @@ const DeviceInfoForm = () => {
 			.then((res) => {
 				console.log("repsonse", res);
 				setDetails(res.data.device);
+				localStorage.setItem("deviceId",res.data.device.device_id)
+				console.log(res.data.device.device_id)
+			
 			});
 	}, []);
 

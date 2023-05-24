@@ -77,6 +77,7 @@ const UserProfile = () => {
  	.then(function (response) {
  		console.log(JSON.stringify(response.data));
         alert(response.data.message)
+        localStorage.setItem(response.data.customer_id,"customerId")
 
  	})
  	.catch(function (error) {
